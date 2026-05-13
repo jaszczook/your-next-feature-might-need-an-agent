@@ -20,7 +20,7 @@ make export   # export to PDF
 
 ## Rules
 
-- **Minimise `node_modules/` access** — work primarily on project content files. Only dip into node_modules for a targeted single-file lookup when truly necessary; do not browse it broadly.
+- **Do not access `node_modules/` or `.idea/`** — both are listed in `.claudeignore`. Work only on project content files.
 
 ## Content source of truth
 
