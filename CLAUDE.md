@@ -24,12 +24,12 @@ make export   # export to PDF
 
 ## Content source of truth
 
-All detailed section plans, speaker notes, and design specs live in `.ai/sections/`:
+All detailed slide plans, speaker notes, and design specs live in `.ai/sections/`:
 
 - `meta.md` — talk title, audience, tone, slide philosophy, visual conventions
-- `section1.md` – `section7.md` — per-section slide plans
+- `slide_X_Y.md` — one file per slide (e.g. `slide_1_1.md`, `slide_4_3.md`) — 27 files total
 
-Read these before editing slides. Do not duplicate their content here.
+Read the relevant slide file(s) before editing slides. Do not duplicate their content here.
 
 ## Slide conventions (from meta.md)
 
