@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "slidev --open",
+    "dev": "slidev",
     "build": "slidev build",
     "export": "slidev export --format pdf"
   },
