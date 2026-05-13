@@ -418,36 +418,20 @@
 .dog-labels b { color: #e6edf3; font-weight: 600; }
 
 /* ─── Eval slide (5.1) ───────────────────────────────────────── */
-.eval-layout {
-  display: flex;
-  gap: 1.8em;
-  height: 78%;
-  margin-top: 0.5em;
+.eval-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5em;
+  flex: 1 1 0;
+  min-height: 0;
+  margin-top: 0.4em;
 }
 
-.eval-left, .eval-right { flex: 1; min-width: 0; }
-
-.eval-outputs {
+.eval-grid > div {
+  min-height: 0;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  gap: 0.4em;
-  margin-top: 0.5em;
-}
-
-.eval-output-item {
-  font-size: 0.68em;
-  padding: 0.45em 0.75em;
-  border: 1px solid #30363d;
-  border-radius: 6px;
-  color: #8b949e;
-  font-style: italic;
-  background: #161b22;
-}
-
-.eval-right-label {
-  font-size: 0.7em;
-  color: #8b949e;
-  margin-bottom: 0.5em;
 }
 
 /* ─── Three columns (5.3) ────────────────────────────────────── */
@@ -455,7 +439,8 @@
   display: flex;
   gap: 1em;
   margin-top: 0.8em;
-  height: 76%;
+  flex: 1 1 0;
+  min-height: 0;
 }
 
 .col-card {
@@ -521,6 +506,35 @@
   line-height: 1.5;
   margin: 0;
 }
+
+/* ─── Mermaid sizing — top-level blocks in slide layouts ─────── */
+/* Mermaid block fills remaining space in problem slides
+   (between .title-bar and the code block) */
+.problem-slide-wrap > :not(.title-bar):not([class*="language-"]) {
+  flex: 1 1 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Mermaid block fills remaining space in dia-only slides */
+.dia-slide > :not(.title-bar):not(.event-props):not(.three-cols) {
+  flex: 1 1 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* ─── Events slide property strip ───────────────────────────── */
+.event-props {
+  display: flex;
+  justify-content: space-around;
+  padding: 0.6em 0 0.2em;
+  border-top: 1px solid #30363d;
+  flex-shrink: 0;
+  font-size: 0.65em;
+  color: #8b949e;
+}
+
+.event-props b { color: #e6edf3; }
 
 /* ─── Hide slide number ──────────────────────────────────────── */
 .slidev-page-number { display: none !important; }

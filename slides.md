@@ -8,9 +8,8 @@ drawings:
 transition: fade
 mdc: true
 slideNumber: false
----
-
----
+mermaid:
+  theme: dark
 src: ./slides/section1.md
 ---
 

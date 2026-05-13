@@ -8,33 +8,79 @@ layout: center
 </div>
 
 ---
-
-## Non-determinism &amp; evals
-
-<EvalDiagram />
-
+class: dia-slide
 ---
 
-## Autonomy &amp; the three As
+<div class="title-bar">
+  <span class="tb-l">Non-determinism &amp; evals</span>
+  <span class="tb-r">distributed systems / testing pyramid</span>
+</div>
 
 ```mermaid
 flowchart LR
-  classDef agent fill:#1e3a5f,stroke:#4a90d9,color:#aecbfa
-  classDef appr fill:#2d1f00,stroke:#c47b2a,color:#f0c87a
-  classDef tool fill:#173326,stroke:#3cad72,color:#a8d5b5
-  classDef ann fill:#1c1400,stroke:#c47b2a,color:#c47b2a
+    subgraph ND["Non-determinism"]
+        direction TB
+        P["same prompt:\n'dispute on account 4821'"]:::prompt
+        O1["path A — get_account →\nfraud_check → decline"]:::out
+        O2["path B — fraud_check →\nget_account → decline"]:::out
+        O3["path C — get_account →\nhold_card → decline"]:::out
+        N["all three correct — different paths\nassert output == X no longer works"]:::note
+        P --> O1 & O2 & O3
+        O1 & O2 & O3 --> N
+    end
 
-  O["ORCHESTRATOR"]:::agent
-  O --"hold_card"--> APPR["HUMAN APPROVAL\nrequired before execution\ntimeout → auto-decline"]:::appr
-  APPR --> HC["hold_card\n✅ executed"]:::tool
-  APPR -.- AU["Authorization\nwho can approve?"]:::ann
-  APPR -.- AUD["Audit\nis it logged?"]:::ann
-  APPR -.- ACC["Accountability\nwho owns the outcome?"]:::ann
+    subgraph EV["Evals = Inverted Pyramid"]
+        direction TB
+        T["TRAJECTORY — glass-box ★\ndid it walk the right path?"]:::new
+        S["SINGLE STEP — white-box\nwas each tool call correct?"]:::mid
+        F["FINAL RESPONSE — black-box\nwas the answer right?"]:::bot
+        T --> S --> F
+    end
+
+    classDef prompt fill:#1e3a5f,stroke:#4a90d9,color:#aecbfa
+    classDef out fill:#173326,stroke:#3cad72,color:#a8d5b5
+    classDef note fill:#0d1117,stroke:#374151,color:#8b949e
+    classDef new fill:#2d1f00,stroke:#c47b2a,color:#f0c87a,font-weight:700
+    classDef mid fill:#161b22,stroke:#374151,color:#e6edf3,font-weight:700
+    classDef bot fill:#0d1a0d,stroke:#30363d,color:#6b7280
 ```
 
 ---
+class: dia-slide
+---
 
-## Cost, latency, deployment
+<div class="title-bar">
+  <span class="tb-l">Autonomy boundaries</span>
+  <span class="tb-r">authorization</span>
+</div>
+
+```mermaid
+flowchart LR
+    ORCH["ORCHESTRATOR"]:::agent
+    GATE["🔒 HUMAN APPROVAL\nanalyst reviews\napprove · deny\ntimeout → auto-decline"]:::gate
+    TOOL["hold_card\nexecuted ✓"]:::tool
+
+    AUTH["Authorization\nwho can approve?"]:::label
+    AUDIT["Audit\nis it logged?"]:::label
+    ACCT["Accountability\nwho owns the outcome?"]:::label
+
+    ORCH -->|hold_card| GATE --> TOOL
+    GATE --- AUTH & AUDIT & ACCT
+
+    classDef agent fill:#1e3a5f,stroke:#4a90d9,color:#aecbfa,font-weight:700
+    classDef gate fill:#2d1f00,stroke:#c47b2a,color:#f0c87a,font-weight:700
+    classDef tool fill:#173326,stroke:#3cad72,color:#a8d5b5
+    classDef label fill:#1c1400,stroke:#c47b2a,color:#f0c87a
+```
+
+---
+class: dia-slide
+---
+
+<div class="title-bar">
+  <span class="tb-l">Cost, latency, deployment</span>
+  <span class="tb-r">sizing decisions</span>
+</div>
 
 <div class="three-cols">
 
