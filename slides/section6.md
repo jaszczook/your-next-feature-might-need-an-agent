@@ -4,7 +4,7 @@ layout: center
 
 <div style="text-align:left;max-width:600px">
   <p class="bridge-main">Let me show you one.</p>
-  <p class="bridge-sub">financial document authoring agent — from source documents to reviewed, signed-off output</p>
+  <p class="bridge-sub">an agent we're building at [bank] for financial document authoring</p>
 </div>
 
 ---

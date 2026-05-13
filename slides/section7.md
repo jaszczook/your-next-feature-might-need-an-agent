@@ -4,21 +4,21 @@ layout: center
 
 ```mermaid
 flowchart LR
-    S["SHORT LEASH\nevery step approved"]:::ep
-    A["GitHub Copilot\nautocomplete"]:::blue
-    B["Cursor chat"]:::green
-    C["Claude Code\n(today)"]:::orange
-    D["Devin / SWE-agent"]:::orange
-    QN{{"your feature?\n— decide deliberately —"}}:::feature
-    L["LONG LEASH\nacts and reports"]:::ep
+    SL["SHORT LEASH\nevery step approved"]:::ep
+    LL["LONG LEASH\nacts and reports"]:::ep
 
-    S --- A --- B --- C --- D --- QN --- L
+    D1(["●\nus, two years ago"]):::dotL
+    D2(["●\nus, today"]):::dotR
+    D3(["●\nthe people we build for"]):::dotL
+
+    SL --- D1
+    SL --- D3
+    D2 --- LL
+    D1 -. "extended over 2 years" .-> D2
 
     classDef ep fill:#0d1117,stroke:#e6edf3,color:#e6edf3,font-weight:700
-    classDef blue fill:#1e3a5f,stroke:#4a90d9,color:#aecbfa
-    classDef green fill:#173326,stroke:#3cad72,color:#a8d5b5
-    classDef orange fill:#2d1f00,stroke:#c47b2a,color:#f0c87a
-    classDef feature fill:#0d1a26,stroke:#58a6ff,color:#58a6ff,stroke-dasharray:4 2
+    classDef dotL fill:#1e3a5f,stroke:#4a90d9,color:#aecbfa
+    classDef dotR fill:#173326,stroke:#3cad72,color:#a8d5b5
 ```
 
 ---
@@ -26,9 +26,9 @@ layout: center
 ---
 
 <div style="max-width:640px">
-  <p class="quote-text">"Full-stack used to mean front to back."</p>
+  <p class="quote-text">"if you don't design silicon,<br>you're not a full-stack developer"</p>
   <div v-click>
-    <p class="own-text">Now it means prompt to production.</p>
+    <p class="own-text">if you don't ship agents,<br>you're not a full-stack developer</p>
   </div>
 </div>
 

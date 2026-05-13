@@ -299,6 +299,17 @@ flowchart TD
     classDef ext fill:#1a1a20,stroke:#555,color:#8b949e,stroke-dasharray:5 5
 ```
 
+<div class="mcp-strip">
+  <div class="mcp-col-hdr">REST API</div>
+  <div class="mcp-col-hdr">MCP</div>
+  <div class="mcp-cell">every consumer</div>
+  <div class="mcp-cell">the LLM</div>
+  <div class="mcp-cell">full surface area</div>
+  <div class="mcp-cell">curated surface</div>
+  <div class="mcp-cell">bytes on the wire</div>
+  <div class="mcp-cell">tokens in the window</div>
+</div>
+
 ---
 class: dia-slide
 ---

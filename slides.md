@@ -10,6 +10,10 @@ mdc: true
 slideNumber: false
 mermaid:
   theme: dark
+hide: true
+---
+
+---
 src: ./slides/section1.md
 ---
 

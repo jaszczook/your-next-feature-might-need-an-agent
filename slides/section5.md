@@ -17,16 +17,15 @@ class: dia-slide
 </div>
 
 ```mermaid
-flowchart LR
-    subgraph ND["Non-determinism"]
+flowchart TB
+    subgraph ND["Same input → different outputs (all valid)"]
         direction TB
-        P["same prompt:\n'dispute on account 4821'"]:::prompt
-        O1["path A — get_account →\nfraud_check → decline"]:::out
-        O2["path B — fraud_check →\nget_account → decline"]:::out
-        O3["path C — get_account →\nhold_card → decline"]:::out
-        N["all three correct — different paths\nassert output == X no longer works"]:::note
-        P --> O1 & O2 & O3
-        O1 & O2 & O3 --> N
+        P["'dispute on account 4821'"]:::prompt
+        A["AGENT"]:::agent
+        O1["'Card held. Customer emailed.'"]:::out
+        O2["'Card has been suspended;\ncustomer notified.'"]:::out
+        O3["'I've placed a hold and\nsent the notification.'"]:::out
+        P --> A --> O1 & O2 & O3
     end
 
     subgraph EV["Evals = Inverted Pyramid"]
@@ -37,9 +36,11 @@ flowchart LR
         T --> S --> F
     end
 
+    ND ~~~ EV
+
     classDef prompt fill:#1e3a5f,stroke:#4a90d9,color:#aecbfa
+    classDef agent fill:#0d2240,stroke:#58a6ff,color:#7dc6ff,font-weight:700
     classDef out fill:#173326,stroke:#3cad72,color:#a8d5b5
-    classDef note fill:#0d1117,stroke:#374151,color:#8b949e
     classDef new fill:#2d1f00,stroke:#c47b2a,color:#f0c87a,font-weight:700
     classDef mid fill:#161b22,stroke:#374151,color:#e6edf3,font-weight:700
     classDef bot fill:#0d1a0d,stroke:#30363d,color:#6b7280
@@ -87,22 +88,22 @@ class: dia-slide
   <div class="col-card">
     <div class="col-icon">💰</div>
     <div class="col-hdr">Cost</div>
-    <div class="col-not">one call, small cost</div>
-    <div class="col-yes">N steps × model calls — budget the loop before you build the feature</div>
+    <div class="col-not">CPU-hours</div>
+    <div class="col-yes">tokens</div>
   </div>
 
   <div class="col-card">
     <div class="col-icon">⏱</div>
     <div class="col-hdr">Latency</div>
-    <div class="col-not">P50 in milliseconds</div>
-    <div class="col-yes">P95 in seconds — design retry budgets and timeouts from day one</div>
+    <div class="col-not">p99 of one call</div>
+    <div class="col-yes">a loop of N calls</div>
   </div>
 
   <div class="col-card">
     <div class="col-icon">🔁</div>
     <div class="col-hdr">Deployment</div>
-    <div class="col-not">a stateless request handler</div>
-    <div class="col-yes">a long-running process — you need state, checkpoints, and a resume path</div>
+    <div class="col-not">a service</div>
+    <div class="col-yes">a service that thinks</div>
   </div>
 
 </div>

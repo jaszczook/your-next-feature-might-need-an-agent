@@ -9,6 +9,9 @@ layout: center
 
 ---
 
+<div style="display:flex;flex-direction:column;height:100%;gap:0.5em">
+  <div class="panel-top">
+
 ```mermaid
 flowchart LR
     SRC["📄 SOURCE"]:::src
@@ -24,17 +27,23 @@ flowchart LR
     classDef usr fill:#0d2240,stroke:#58a6ff,color:#7dc6ff
 ```
 
-<div class="panel-bottom">
-  <div style="padding:0.5em 0.8em;font-size:0.62em;color:#8b949e;border-bottom:1px solid #30363d">
-    What we already built
+  <p class="panel-cap">prefill a form from a source</p>
   </div>
-  <div class="screen-placeholder">
-    [ SCREENSHOT / SHORT VIDEO PLACEHOLDER ]<br>
-    <span style="font-size:0.85em;margin-top:0.4em;display:block">
-      Document-extraction tool — source doc on left, populated form on right, one field editable.<br>
-      Use obviously-fake data: "Jane Sample", "ACME Industries", round amounts. No blur.
-    </span>
+
+  <div class="panel-bottom">
+    <div style="padding:0.5em 0.8em;font-size:0.62em;color:#8b949e;border-bottom:1px solid #30363d">
+      What we already built
+    </div>
+    <div class="screen-placeholder">
+      [ SCREENSHOT / SHORT VIDEO PLACEHOLDER ]<br>
+      <span style="font-size:0.85em;margin-top:0.4em;display:block">
+        Document-extraction tool — source doc on left, populated form on right, one field editable.<br>
+        Use obviously-fake data: "Jane Sample", "ACME Industries", round amounts. No blur.
+      </span>
+    </div>
   </div>
+
+  <p style="text-align:center;font-size:0.68em;color:#8b949e;padding-top:0.4em">the user is still driving</p>
 </div>
 
 ---

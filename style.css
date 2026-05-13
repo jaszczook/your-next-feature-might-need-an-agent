@@ -517,7 +517,7 @@
 }
 
 /* Mermaid block fills remaining space in dia-only slides */
-.dia-slide > :not(.title-bar):not(.event-props):not(.three-cols) {
+.dia-slide > :not(.title-bar):not(.event-props):not(.three-cols):not(.mcp-strip) {
   flex: 1 1 0;
   min-height: 0;
   overflow: hidden;
@@ -538,3 +538,25 @@
 
 /* ─── Hide slide number ──────────────────────────────────────── */
 .slidev-page-number { display: none !important; }
+
+/* ─── P5 MCP comparison strip ───────────────────────────────── */
+.mcp-strip {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 2em;
+  row-gap: 0.1em;
+  padding: 0.5em 0 0.2em;
+  border-top: 1px solid #30363d;
+  flex-shrink: 0;
+  font-size: 0.56em;
+  color: #8b949e;
+}
+
+.mcp-col-hdr {
+  font-weight: 700;
+  color: #e6edf3;
+  border-bottom: 1px solid #374151;
+  padding-bottom: 0.25em;
+  margin-bottom: 0.1em;
+  letter-spacing: 0.04em;
+}
