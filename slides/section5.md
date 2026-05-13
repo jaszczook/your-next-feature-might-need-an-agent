@@ -8,6 +8,13 @@ layout: center
 </div>
 
 <!--
+## CUE
+- echo "same job" framing
+- three honest recalibrations
+- → first one
+
+---
+
 ## FLOW
 - Acknowledge the "same as before" framing from the deep-dive
 - Signal honesty: three real recalibration points ahead
@@ -61,6 +68,17 @@ flowchart TB
 ```
 
 <!--
+## CUE
+- same input, different output
+- distributed systems analogy
+- black-box: final answer
+- white-box: single step
+- glass-box: trajectory (new)
+- event stream = trajectory
+- → autonomy next
+
+---
+
 ## FLOW
 - Introduce non-determinism: same input, different outputs, same outcome
 - [gesture at top panel] Bridge to distributed-systems analogy; introduce "evals"
@@ -129,6 +147,14 @@ flowchart LR
 ```
 
 <!--
+## CUE
+- gate = authorization
+- auth, audit, accountability
+- longer leash, higher stakes
+- → cost & latency
+
+---
+
 ## FLOW
 - Name the card-hold gate for what it really is: authorization
 - [point at three labels] Authorization, Audit, Accountability — same controls, shifted actor
@@ -184,6 +210,16 @@ class: dia-slide
 </div>
 
 <!--
+## CUE
+- same sizing, new variables
+- cost: tokens not CPU
+- latency: p99 of loop
+- deployment: stateful, weirder
+- you've done this already
+- → show you one
+
+---
+
 ## FLOW
 - Frame all three as the same kind of thing: sizing decisions with shifted variables
 - [point at cost] Cost: CPU-hours → tokens; scales with leash length

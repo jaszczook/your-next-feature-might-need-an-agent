@@ -8,6 +8,13 @@ layout: center
 </div>
 
 <!--
+## CUE
+- Name the agent
+- Silent 90s, pattern-spot
+- → play video
+
+---
+
 ## FLOW
 - Introduce the demo: name what it is and what it does
 - Set expectation: going silent for ~90 seconds, ask them to pattern-spot
@@ -34,6 +41,13 @@ layout: center
 </div>
 
 <!--
+## CUE
+- Stay silent
+- Hold silence, scan room
+- → closing line
+
+---
+
 ## FLOW
 - Silent during the video (~60–90 seconds)
 - Hold silence 2–3 seconds after video ends; look at the room

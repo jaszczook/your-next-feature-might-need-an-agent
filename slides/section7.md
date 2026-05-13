@@ -23,6 +23,16 @@ flowchart LR
 ```
 
 <!--
+## CUE
+- Frame the diagram
+- Row 1: us, then
+- Row 2: us, now
+- Row 3: our users
+- Earn the leash
+- → full-stack redef
+
+---
+
 ## FLOW
 - Frame the slide: what this diagram is about
 - [point at Row 1] Us, two years ago — short leash, right to distrust
@@ -55,6 +65,16 @@ layout: center
 </div>
 
 <!--
+## CUE
+- State 1: the riff
+- Definition keeps moving
+- State 2: click
+- Honest ambivalence
+- Builders thrive, coders friction
+- → thanks
+
+---
+
 ## FLOW
 - [STATE 1] Introduce the recurring industry riff; name the joke and the real thing it points at
 - [STATE 1] Land the beat: the definition of full-stack keeps moving
@@ -91,6 +111,11 @@ layout: center
 </div>
 
 <!--
+## CUE
+- → closing line
+
+---
+
 ## FLOW
 - Closing line
 

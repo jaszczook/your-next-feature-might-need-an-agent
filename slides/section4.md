@@ -8,6 +8,13 @@ layout: center
 </div>
 
 <!--
+## CUE
+- Five problems, one feature
+- Agent term + software analogue
+- → agent needs to act
+
+---
+
 ## FLOW
 - Introduce the five-problem frame for the Cmd+K feature build
 - Name each problem's agent-land term alongside its regular-software analogue
@@ -65,6 +72,17 @@ case_agent = LlmAgent(
 ```
 
 <!--
+## CUE
+- Adapter pattern, service calls
+- Four tools, three services
+- Agent picks what it needs
+- Function → tool via list
+- Docstring is LLM contract
+- Text, data, artifacts
+- → one agent, too much
+
+---
+
 ## FLOW
 - Introduce tools as the adapter pattern — service calls you've written your whole career
 - Introduce case_agent diagram: four tools, three backend services
@@ -143,6 +161,16 @@ complaint_handler_agent = LlmAgent(
 ```
 
 <!--
+## CUE
+- Too much → decompose
+- Rename: now orchestrator
+- Same tools, regrouped; hold_card stays
+- No logic, LLM decides
+- Contrast explicit saga
+- → about that card hold
+
+---
+
 ## FLOW
 - Problem: one agent doing too much — service composition instinct kicks in
 - Rename agent to orchestrator; explain the role change
@@ -214,31 +242,36 @@ flowchart TD
     classDef gate fill:#2d1040,stroke:#9b59b6,color:#ce9aff,font-weight:700
 ```
 
-```python {6,8,19}
-# Cross-cutting: log every tool call. Callback shape.
+```python {12,13}
+# Cross-cutting: log every tool call.
 def audit_tool_call(tool, args, tool_context):
     logger.info(f"{tool.name} called with {args}")
 
-# Targeted: gate a specific tool on human approval.
-@long_running_tool
-def hold_card(card_id: str, reason: str):
-    approval = yield {
-        "type": "approval_request",
-        "card_id": card_id,
-        "reason": reason,
-    }
-    if not approval["approved"]:
-        return {"status": "denied", "by": approval["user"]}
-    return card_service.hold(card_id, reason)
+# Targeted: gate hold_card on human approval.
+def hold_card(card_id: str, reason: str) -> dict:
+    # returns "pending" → agent pauses → analyst approves → run resumes
+    return {"status": "pending", "card_id": card_id, "reason": reason}
 
 complaint_handler_agent = LlmAgent(
     ...
     before_tool_callback=audit_tool_call,
-    tools=[hold_card],
+    tools=[LongRunningFunctionTool(func=hold_card)],
 )
 ```
 
 <!--
+## CUE
+- Always log, never without asking
+- AOP / middleware framing
+- Audit band: sync, global
+- GATE: async, human approval
+- Short leash inside long one
+- Two mechanisms, one idea
+- Other scopes, same family
+- → agent needs to remember
+
+---
+
 ## FLOW
 - Introduce cross-cutting concerns: "always log this," "never do that without asking first"
 - Frame as AOP / middleware — attach behavior around a function without changing the function
@@ -331,6 +364,18 @@ memory_service.add(
 ```
 
 <!--
+## CUE
+- Two kinds of memory
+- State: request scope, gone after
+- STATE box: draft mid-flight
+- memory_service: cross-session DB
+- MEMORY_SERVICE: past patterns
+- Session-ends arrow = boundary
+- state write vs. memory add
+- → one more, then zoom out
+
+---
+
 ## FLOW
 - Two kinds of memory: short-term (request scope) and long-term (database)
 - Kind one: state — lives for the conversation, then gone; same as request-scoped bean
@@ -410,6 +455,20 @@ flowchart TD
 ```
 
 <!--
+## CUE
+- Pointing, not adding
+- Everything inside your codebase
+- Two arrows cross a line
+- MCP: Fraud DB, risk team's protocol
+- "Just OpenAPI?" — not quite
+- REST wide; MCP curated for LLM
+- MCP = scoped SDK at runtime
+- A2A: agent-to-agent boundary
+- Same allegory, two scopes
+- → five down, runtime next
+
+---
+
 ## FLOW
 - Problem five is different: not adding to the system, pointing at things already there
 - [point at the dimmed diagram broadly — beat] everything built so far lives inside your codebase
@@ -480,6 +539,19 @@ sequenceDiagram
 </div>
 
 <!--
+## CUE
+- Runtime substrate, easy to miss
+- Everything is literally an event
+- All producers on one stream
+- Three things fall out free
+- Observability: stream = trace
+- Persistence: state from events
+- Resumability: pause-persist-resume
+- Patterns = shape; events = substrate
+- → now, what's hard
+
+---
+
 ## FLOW
 - Frame: the runtime substrate underneath everything we just built — easiest piece to miss
 - Everything an ADK agent does is literally an event — user message, tool call, tool response, yield, approval, resume

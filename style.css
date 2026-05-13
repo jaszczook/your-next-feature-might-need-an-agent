@@ -286,6 +286,23 @@
   padding: 0.7em 0.9em;
   overflow: hidden;
   min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.panel-top .mermaid {
+  width: 100%;
+  min-height: 0;
+}
+
+.panel-video {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  display: block;
+  object-fit: cover;
 }
 
 .panel-bottom {
@@ -302,6 +319,24 @@
   font-size: 0.6em;
   color: #8b949e;
   margin-top: 0.4em;
+  text-align: center;
+}
+
+.panel-hdr {
+  padding: 0.5em 0.8em;
+  font-size: 0.62em;
+  color: #8b949e;
+  border-bottom: 1px solid #30363d;
+  flex-shrink: 0;
+}
+
+.panel-footer {
+  text-align: center;
+  font-size: 0.68em;
+  color: #8b949e;
+  padding-top: 0.4em;
+  flex-shrink: 0;
+  margin: 0;
 }
 
 .screen-placeholder {

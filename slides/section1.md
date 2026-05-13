@@ -8,6 +8,14 @@ layout: center
 </div>
 
 <!--
+## CUE
+- Open cold — no greeting
+- State the claim
+- Scope the half hour
+- → about-me slide
+
+---
+
 ## FLOW
 - Open cold on the title — no greeting, no thank-you
 - State the claim directly
@@ -39,6 +47,14 @@ one actually looks like."
 </div>
 
 <!--
+## CUE
+- Name and career arc
+- Mention ADK project
+- AI tools daily
+- → hold onto that
+
+---
+
 ## FLOW
 - Name and career arc: Samsung → Bravura Solutions → [bank], [N] years on [team]
 - Current work: building an agent on top of [project area] using Google's ADK — audience will see it later
@@ -71,6 +87,17 @@ layout: center
 </div>
 
 <!--
+## CUE
+- Bishop anecdote
+- Career: kept clicking
+- Assistant started clicking
+- [beat]
+- We got the gift first
+- Users haven't got it
+- → close the asymmetry
+
+---
+
 ## FLOW
 - Childhood anecdote: bishop asked what we wanted to be; said "an IT guy" without really knowing what it meant
 - Career payoff: grew up, kept clicking on computers, people started paying me to do it

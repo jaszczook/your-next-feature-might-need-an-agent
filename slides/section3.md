@@ -8,6 +8,13 @@ layout: center
 </div>
 
 <!--
+## CUE
+- Two recurring shapes
+- Name them; recognise them
+- → naming drives decisions
+
+---
+
 ## FLOW
 - Introduce the recurring concept: two shapes that appear when building with agents
 - Name them so the audience can recognise and categorise on their own
@@ -24,7 +31,7 @@ determines almost every other decision you make."
 
 ---
 
-<div style="display:flex;flex-direction:column;height:100%;gap:0.5em">
+<div class="two-panel">
   <div class="panel-top">
 
 ```mermaid
@@ -46,22 +53,25 @@ flowchart LR
   </div>
 
   <div class="panel-bottom">
-    <div style="padding:0.5em 0.8em;font-size:0.62em;color:#8b949e;border-bottom:1px solid #30363d">
-      What we already built
-    </div>
-    <div class="screen-placeholder">
-      [ SCREENSHOT / SHORT VIDEO PLACEHOLDER ]<br>
-      <span style="font-size:0.85em;margin-top:0.4em;display:block">
-        Document-extraction tool — source doc on left, populated form on right, one field editable.<br>
-        Use obviously-fake data: "Jane Sample", "ACME Industries", round amounts. No blur.
-      </span>
-    </div>
+    <div class="panel-hdr">What we already built</div>
+    <video class="panel-video" :src="'/7490439-hd_1920_1080_30fps.mp4'" autoplay loop muted playsinline controls />
   </div>
 
-  <p style="text-align:center;font-size:0.68em;color:#8b949e;padding-top:0.4em">the user is still driving</p>
+  <p class="panel-footer">the user is still driving</p>
 </div>
 
 <!--
+## CUE
+- Shape one: assistive
+- Source → agent → form → user
+- Pattern everywhere
+- [advance panel — beat]
+- Real product, live
+- Still filling a form
+- → short leash; reframe next
+
+---
+
 ## FLOW
 - Name and introduce shape one: assistive
 - Describe the generic pattern — source, agent, form, user reviews and submits
@@ -106,6 +116,16 @@ layout: center
 </div>
 
 <!--
+## CUE
+- Assistive = tool, not agent
+- Tools are fine; don't over-engineer
+- [beat]
+- Short leash wastes capability
+- Leash for user's goal
+- → the hour is the product
+
+---
+
 ## FLOW
 - Deliver the reframe: assistive = tool, not agent
 - Acknowledge tools are valuable; the mistake is over-engineering them as agents
@@ -189,6 +209,15 @@ So sometimes the leash does need to be longer. And the shape changes."
 </div>
 
 <!--
+## CUE
+- Shape two: agentic
+- Six actions, four systems, one conditional
+- Form would ship next year
+- → one sentence, agent sequences
+- Long leash; "hold card" = short inside
+
+---
+
 ## FLOW
 - Name and introduce shape two: agentic
 - Walk through what's in the Cmd+K prompt — six actions, four systems, a conditional
@@ -250,6 +279,15 @@ one. That tension is where the interesting design questions live."
 </div>
 
 <!--
+## CUE
+- Dog metaphor: two shapes
+- [top] sit/come — tool
+- [bottom] behave — agent
+- Goal = natural unit → agent
+- → Cmd+K, next nine minutes
+
+---
+
 ## FLOW
 - Introduce the dog metaphor to crystallise both shapes
 - [gesture at top row] Assistive: short leash, user drives every step, you're building a tool

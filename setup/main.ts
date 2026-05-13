@@ -16,6 +16,16 @@ export default function ({ isClient }: { app: any; router: any; isClient: boolea
     return false
   }
 
+  function isInPanelTop(el: Element): boolean {
+    let node = el.parentElement
+    while (node) {
+      const c = typeof node.className === 'string' ? node.className : ''
+      if (c.includes('panel-top')) return true
+      node = node.parentElement
+    }
+    return false
+  }
+
   function ensureStyle(shadow: ShadowRoot, css: string) {
     let s = shadow.querySelector<HTMLStyleElement>('#mf')
     if (!s) {
@@ -31,11 +41,13 @@ export default function ({ isClient }: { app: any; router: any; isClient: boolea
     const shadow = el.shadowRoot
     if (!shadow) return
 
-    // bounded: container has a defined height → fill it; unbounded: natural height
+    // bounded: fill container; panel-top: natural size centered; unbounded: fill width
     const bounded = isBounded(el)
     const css = bounded
       ? 'svg{display:block;max-width:none!important;width:100%!important;height:100%!important}'
-      : 'svg{display:block;max-width:none!important;width:100%;height:auto}'
+      : isInPanelTop(el)
+        ? 'svg{display:block;max-width:100%;width:auto;height:auto;margin:0 auto}'
+        : 'svg{display:block;max-width:none!important;width:100%;height:auto}'
 
     ensureStyle(shadow, css)
 

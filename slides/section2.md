@@ -7,6 +7,13 @@ layout: center
 </div>
 
 <!--
+## CUE
+- One-sentence definition
+- Frameworks are elaborations
+- → Look at the loop
+
+---
+
 ## FLOW
 - Deliver the working definition — one sentence, nothing added
 - Name the frameworks as elaborations, not the thing itself
@@ -51,6 +58,15 @@ flowchart LR
 ```
 
 <!--
+## CUE
+- Trace request path
+- DECIDE branch split
+- One out, many inside
+- All else is scaffolding
+- → How many times?
+
+---
+
 ## FLOW
 - Trace the request path: user sends, model receives
 - Explain the DECIDE branch: respond goes out, call-a-tool continues the loop
@@ -92,6 +108,19 @@ flowchart LR
 ```
 
 <!--
+## CUE
+- Leash metaphor intro
+- Audience's lived experience
+- Copilot: short leash
+- Cursor: longer leash
+- Claude Code: walk away
+- Trust built gradually
+- [beat]
+- Dial = design question
+- → Two shapes
+
+---
+
 ## FLOW
 - Introduce the leash metaphor: short leash left, long leash right
 - Anchor to the audience's lived experience — they've been moving along this axis for two years
