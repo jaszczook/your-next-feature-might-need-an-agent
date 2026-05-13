@@ -276,26 +276,21 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  gap: 0.5em;
+  gap: 0;
 }
 
 .panel-top {
   flex: 2;
-  border: 1px solid #30363d;
-  border-radius: 8px;
+  border-bottom: 1px solid #30363d;
   padding: 0.7em 0.9em;
   overflow: hidden;
   min-height: 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
+  gap: 0.4em;
 }
 
-.panel-top .mermaid {
-  width: 100%;
-  min-height: 0;
-}
 
 .panel-video {
   flex: 1;
@@ -307,8 +302,6 @@
 
 .panel-bottom {
   flex: 3;
-  border: 1px solid #30363d;
-  border-radius: 8px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -414,7 +407,7 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  gap: 0.5em;
+  gap: 0;
 }
 
 .dog-row {
@@ -452,6 +445,7 @@
 }
 
 .dog-sketch svg { max-height: 100%; max-width: 100%; width: auto; }
+.dog-img { max-height: 100%; max-width: 100%; object-fit: contain; display: block; }
 
 .dog-labels {
   width: 185px;

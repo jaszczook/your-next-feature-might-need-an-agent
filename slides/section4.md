@@ -199,7 +199,7 @@ class: problem-slide-stack
 
 <div class="title-bar">
   <span class="tb-l">P3 — Callbacks</span>
-  <span class="tb-r">AOP / interceptors / middleware</span>
+  <span class="tb-r">AOP / middleware / guards</span>
 </div>
 
 ```mermaid
@@ -242,20 +242,19 @@ flowchart TD
     classDef gate fill:#2d1040,stroke:#9b59b6,color:#ce9aff,font-weight:700
 ```
 
-```python {12,13}
+```python {11,12}
 # Cross-cutting: log every tool call.
 def audit_tool_call(tool, args, tool_context):
     logger.info(f"{tool.name} called with {args}")
 
 # Targeted: gate hold_card on human approval.
 def hold_card(card_id: str, reason: str) -> dict:
-    # returns "pending" → agent pauses → analyst approves → run resumes
-    return {"status": "pending", "card_id": card_id, "reason": reason}
+    return card_service.hold(card_id, reason)
 
 complaint_handler_agent = LlmAgent(
     ...
     before_tool_callback=audit_tool_call,
-    tools=[LongRunningFunctionTool(func=hold_card)],
+    tools=[FunctionTool(func=hold_card, require_confirmation=True)],
 )
 ```
 
@@ -264,7 +263,7 @@ complaint_handler_agent = LlmAgent(
 - Always log, never without asking
 - AOP / middleware framing
 - Audit band: sync, global
-- GATE: async, human approval
+- GATE: one flag, agent pauses until analyst says yes
 - Short leash inside long one
 - Two mechanisms, one idea
 - Other scopes, same family
@@ -276,9 +275,9 @@ complaint_handler_agent = LlmAgent(
 - Introduce cross-cutting concerns: "always log this," "never do that without asking first"
 - Frame as AOP / middleware — attach behavior around a function without changing the function
 - [point at audit band — beat] before_tool_callback: synchronous, fires before every tool call globally
-- [point at GATE — beat] hold_card needs async human approval — synchronous callback is wrong; long-running tool yields and suspends the run
+- [point at GATE — beat] hold_card needs human approval — require_confirmation=True on the FunctionTool; ADK pauses the run and surfaces the request; analyst approves or denies; run resumes
 - Short leash inside the long one: agent is free to pull data but can't freeze a card without a person saying yes
-- [glance at snippet — beat] Two mechanisms, one idea — callback for synchronous/everywhere; long-running tool for async/targeted
+- [glance at snippet — beat] Two mechanisms, one idea — callback for synchronous/everywhere; require_confirmation for async/targeted
 - Rest of ADK callback surface falls into place: different scopes, same idea
 - → transition: Problem four. The agent needs to remember things.
 
@@ -289,9 +288,9 @@ Problem three. We need a way to say 'always log this' and 'never do that without
 Agent frameworks have the same idea, but here it splits into two shapes depending on what you're doing.
 [point at audit band — beat] Up here, on the orchestrator, I've attached an audit_tool_call callback. ADK calls this a before_tool_callback. It runs synchronously before every tool call, no matter which tool, no matter which sub-agent triggered it. Every action the agent takes, we have a log line. Same shape as a global interceptor.
 [point at GATE — beat] And down here, on hold_card specifically, I need something different. The agent can't just log and proceed — it has to stop, ask a human, and wait for an answer that might come two minutes later. A synchronous callback is the wrong tool for that.
-The right tool is a long-running tool: hold_card runs, yields an approval request, the whole agent run suspends, and when an analyst clicks approve or deny in the UI, the answer feeds back in and the run resumes. This is the short leash inside the long one — the agent can pull accounts, check fraud, draft responses on its own, but it cannot freeze a real customer's card without a person saying yes.
+ADK has a built-in primitive for exactly this: require_confirmation=True on the FunctionTool. One flag. When the agent tries to call hold_card, ADK automatically pauses the run, surfaces the approval request to your UI, and only executes the actual card hold once an analyst says yes. The function itself stays clean — no pending status, no generator logic. This is the short leash inside the long one — the agent can pull accounts, check fraud, draft responses on its own, but it cannot freeze a real customer's card without a person saying yes.
 [glance at snippet — beat]
-Two mechanisms, one idea. Both are middleware. Both are 'attach behavior to a tool call.' The callback is the synchronous, applied-to-everything flavor; the long-running tool is the asynchronous, applied-to-a-specific-thing flavor. Once you see them as the same family, the rest of the ADK callback surface — before_agent, after_agent, before_model — falls into place. Different scopes, same idea.
+Two mechanisms, one idea. Both are middleware. Both are 'attach behavior to a tool call.' The callback is the synchronous, applied-to-everything flavor; require_confirmation is the async, applied-to-a-specific-tool flavor. Once you see them as the same family, the rest of the ADK surface — before_agent, after_agent, before_model — falls into place. Different scopes, same idea.
 Problem four. The agent needs to remember things.
 -->
 

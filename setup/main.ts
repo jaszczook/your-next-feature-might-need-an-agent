@@ -37,9 +37,15 @@ export default function ({ isClient }: { app: any; router: any; isClient: boolea
       s.textContent = css
   }
 
+  // WeakSet prevents double-processing elements that already had a shadow root
+  // when first seen (immediate pass) and are then also seen in the deferred pass.
+  const watched = new WeakSet<Element>()
+
   function watchHost(el: Element) {
+    if (watched.has(el)) return
     const shadow = el.shadowRoot
     if (!shadow) return
+    watched.add(el)
 
     // bounded: fill container; panel-top: natural size centered; unbounded: fill width
     const bounded = isBounded(el)
@@ -51,20 +57,29 @@ export default function ({ isClient }: { app: any; router: any; isClient: boolea
 
     ensureStyle(shadow, css)
 
-    // Mermaid sets shadow.innerHTML after async render, wiping injected styles.
-    // Observe the shadow root itself so we can re-inject on every replacement.
+    // Mermaid replaces shadow.innerHTML after async render, wiping injected styles.
+    // Observe the shadow root to re-inject on every replacement.
     new MutationObserver(() => ensureStyle(shadow, css))
       .observe(shadow, { childList: true })
   }
 
   const ob = new MutationObserver(mutations => {
+    const candidates: Element[] = []
     for (const m of mutations) {
       for (const n of m.addedNodes) {
         if (!(n instanceof Element)) continue
-        if (n.shadowRoot) watchHost(n)
-        n.querySelectorAll('*').forEach(c => { if (c.shadowRoot) watchHost(c) })
+        candidates.push(n)
+        n.querySelectorAll('*').forEach(c => candidates.push(c as Element))
       }
     }
+
+    // Immediate pass: elements whose shadow root already exists at observer time.
+    candidates.forEach(el => { if (el.shadowRoot) watchHost(el) })
+
+    // Deferred pass: MutationObserver fires before Promise microtasks, so Vue's
+    // watchEffect (which calls attachShadow) hasn't run yet at the immediate pass.
+    // setTimeout(0) runs after all microtasks, by which point shadows are attached.
+    setTimeout(() => candidates.forEach(el => { if (el.shadowRoot) watchHost(el) }), 0)
   })
   ob.observe(document.body, { childList: true, subtree: true })
 }

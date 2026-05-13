@@ -53,8 +53,7 @@ flowchart LR
   </div>
 
   <div class="panel-bottom">
-    <div class="panel-hdr">What we already built</div>
-    <video class="panel-video" :src="'/7490439-hd_1920_1080_30fps.mp4'" autoplay loop muted playsinline controls />
+    <video class="panel-video" :src="'/7490439-hd_1920_1080_30fps.mp4'" loop muted playsinline controls />
   </div>
 
   <p class="panel-footer">the user is still driving</p>
@@ -254,7 +253,7 @@ one. That tension is where the interesting design questions live."
   <div class="dog-row ass">
     <div class="dog-hdr">Assistive</div>
     <div class="dog-sketch">
-      <div class="screen-placeholder">[ IMAGE PLACEHOLDER — assistive dog sketch ]</div>
+      <img :src="'/sit.png'" class="dog-img" alt="assistive — short leash" />
     </div>
     <div class="dog-labels">
       <span><b>user drives</b></span>
@@ -267,7 +266,7 @@ one. That tension is where the interesting design questions live."
   <div class="dog-row age">
     <div class="dog-hdr">Agentic</div>
     <div class="dog-sketch">
-      <div class="screen-placeholder">[ IMAGE PLACEHOLDER — agentic dog sketch ]</div>
+      <img :src="'/behave.png'" class="dog-img" alt="agentic — long leash" />
     </div>
     <div class="dog-labels">
       <span><b>user delegates</b></span>
