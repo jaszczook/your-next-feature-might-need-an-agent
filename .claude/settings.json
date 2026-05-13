@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "deny": [
+      "Read(node_modules/**)",
+      "Edit(node_modules/**)",
+      "Write(node_modules/**)",
+      "Bash(* node_modules/*)"
+    ]
+  }
+}

@@ -7,6 +7,22 @@ layout: center
   <p class="talk-meta">[Name] · Internal Tech Talk</p>
 </div>
 
+<!--
+## FLOW
+- Open cold on the title — no greeting, no thank-you
+- State the claim directly
+- Scope the next half hour: convince you it's true some of the time, give the mental model for when, show what building one actually looks like
+- → transition cue: move into the about-me slide
+
+---
+
+## SPOKEN
+"Your next feature might need an agent. That's the claim. Over the
+next half hour I want to convince you it's true some of the time,
+give you the mental model for when, and walk through what building
+one actually looks like."
+-->
+
 ---
 
 <div class="about-layout">
@@ -22,6 +38,27 @@ layout: center
   </div>
 </div>
 
+<!--
+## FLOW
+- Name and career arc: Samsung → Bravura Solutions → [bank], [N] years on [team]
+- Current work: building an agent on top of [project area] using Google's ADK — audience will see it later
+- Aside: like a lot of you, using AI dev assistants basically every day for the last couple of years
+- → transition cue: "hold onto that — it matters in a minute"
+
+---
+
+## SPOKEN
+"Quick about me. I'm [name]. I've been a full-stack developer my
+entire career — started at Samsung, then Bravura Solutions, now here
+at [bank] for the last [N] years on [team]. These days I'm building
+an agent on top of [project area] using Google's ADK — you'll see a
+bit of it later.
+Oh, and like a lot of you, I've been using AI dev assistants —
+Copilot, Cursor, Claude Code, whatever's been on my machine — basically
+every day for the last couple of years. Hold onto that — it matters
+in a minute."
+-->
+
 ---
 layout: center
 ---
@@ -32,3 +69,37 @@ layout: center
     Childhood photo at a computer — or nostalgic 90s home computer (beige tower, curved CRT)
   </span>
 </div>
+
+<!--
+## FLOW
+- Childhood anecdote: bishop asked what we wanted to be; said "an IT guy" without really knowing what it meant
+- Career payoff: grew up, kept clicking on computers, people started paying me to do it
+- Shift: a couple of years ago something funny happened — the dev assistant started clicking, and I still got paid
+- [beat]
+- The real stakes: we in this room ship code faster because an agent does some clicking for us, and we still get paid for that output — that's a gift, and this room got it first
+- The asymmetry: the people we build software for haven't gotten it yet — the analyst, the relationship manager, the ops person — none of them have an agent in their workflow the way we do
+- Closing sentence: the whole talk in one sentence — that's the asymmetry we get to close; our job, increasingly, is to give them what we already have
+
+---
+
+## SPOKEN
+"When I was a kid, a bishop came to my school and asked us all what
+we wanted to be when we grew up. I said 'an IT guy.' I didn't really
+know what that meant. I just knew there was a computer in my house
+and I liked clicking on it.
+Turned out to be a decent answer. I grew up, I kept clicking on
+computers, and eventually people started paying me to do it.
+Then a couple of years ago, something funny happened. I opened my
+dev assistant, and it started clicking. And I still got paid.
+[beat]
+Which is the thing I want you to sit with for a second. We — in this
+room — get to ship code faster because we have an agent doing some of
+the clicking for us. And we still get paid for that output. That's a
+gift, and it's the gift this room got first.
+The people we build software for haven't gotten it yet. The analyst
+running complaints, the relationship manager pulling together a pitch,
+the ops person reconciling a break — none of them have an agent in
+their workflow doing the clicking the way we do in ours. The whole
+talk, in one sentence: that's the asymmetry we get to close. Our job,
+increasingly, is to give them what we already have."
+-->

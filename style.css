@@ -156,6 +156,7 @@
   padding: 0.9em 1.4em !important;
   gap: 0.35em;
   box-sizing: border-box;
+  overflow: hidden !important;
 }
 
 /* Title-bar wrapper — auto height, just holds the title bar */
@@ -193,14 +194,23 @@
   height: 100%;
 }
 
-/* Mermaid block as flex child of problem-slide-wrap */
-.problem-slide-wrap.slidev-layout > .mermaid {
+/* Mermaid block as flex child of problem-slide-wrap.
+   Descendant (not >) in case Slidev wraps the component in an extra div. */
+.problem-slide-wrap.slidev-layout .mermaid {
   flex: 1 1 0;
   min-height: 0;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.problem-slide-wrap .mermaid svg {
+  max-width: 100% !important; /* override Mermaid's inline max-width */
+  max-height: 100%;
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 /* Code blocks inside problem slides */
@@ -229,6 +239,7 @@
   flex-direction: column !important;
   padding: 0.8em 1.4em !important;
   gap: 0.3em;
+  overflow: hidden !important;
 }
 
 .dia-slide .title-bar { flex-shrink: 0; }
@@ -245,14 +256,22 @@
   height: 100%;
 }
 
-/* Mermaid in dia-slide */
-.dia-slide.slidev-layout > .mermaid {
+/* Mermaid in dia-slide — descendant selector for robustness */
+.dia-slide.slidev-layout .mermaid {
   flex: 1 1 0;
   min-height: 0;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.dia-slide .mermaid svg {
+  max-width: 100% !important;
+  max-height: 100%;
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 /* ─── Two-panel slide (3.2 Assistive shape) ──────────────────── */
@@ -508,19 +527,38 @@
 }
 
 /* ─── Mermaid sizing — top-level blocks in slide layouts ─────── */
-/* Mermaid block fills remaining space in problem slides
-   (between .title-bar and the code block) */
+/* Catch-all for any non-title, non-code direct children in problem slides
+   (handles wrapper divs that Slidev might insert) */
 .problem-slide-wrap > :not(.title-bar):not([class*="language-"]) {
   flex: 1 1 0;
   min-height: 0;
   overflow: hidden;
 }
 
-/* Mermaid block fills remaining space in dia-only slides */
+/* Catch-all for dia-only slides */
 .dia-slide > :not(.title-bar):not(.event-props):not(.three-cols):not(.mcp-strip) {
   flex: 1 1 0;
   min-height: 0;
   overflow: hidden;
+}
+
+/* ─── Standalone mermaid slides (center layout, no other content) */
+.mermaid-full.slidev-layout {
+  padding: 2em 3em !important;
+}
+
+.mermaid-full .mermaid {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mermaid-full .mermaid svg {
+  max-width: none !important;
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 /* ─── Events slide property strip ───────────────────────────── */
