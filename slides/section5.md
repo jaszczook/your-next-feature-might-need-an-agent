@@ -33,7 +33,7 @@ class: dia-slide
 ---
 
 <div class="title-bar">
-  <span class="tb-l">Non-determinism &amp; evals</span>
+  <span class="tb-l">C1 — Non-determinism &amp; evals</span>
   <span class="tb-r">distributed systems / testing pyramid</span>
 </div>
 
@@ -123,7 +123,7 @@ class: dia-slide
 ---
 
 <div class="title-bar">
-  <span class="tb-l">Autonomy boundaries</span>
+  <span class="tb-l">C2 — Autonomy boundaries</span>
   <span class="tb-r">authorization</span>
 </div>
 
@@ -180,7 +180,7 @@ class: dia-slide
 ---
 
 <div class="title-bar">
-  <span class="tb-l">Cost, latency, deployment</span>
+  <span class="tb-l">C3 — Cost, latency, deployment</span>
   <span class="tb-r">sizing decisions</span>
 </div>
 
@@ -190,21 +190,21 @@ class: dia-slide
     <div class="col-icon">💰</div>
     <div class="col-hdr">Cost</div>
     <div class="col-not">CPU-hours</div>
-    <div class="col-yes">tokens</div>
+    <div class="col-yes">— tokens</div>
   </div>
 
   <div class="col-card">
     <div class="col-icon">⏱</div>
     <div class="col-hdr">Latency</div>
     <div class="col-not">p99 of one call</div>
-    <div class="col-yes">a loop of N calls</div>
+    <div class="col-yes">— a loop of N calls</div>
   </div>
 
   <div class="col-card">
-    <div class="col-icon">🔁</div>
+    <div class="col-icon">🚀</div>
     <div class="col-hdr">Deployment</div>
     <div class="col-not">a service</div>
-    <div class="col-yes">a service that thinks</div>
+    <div class="col-yes">— a service that thinks</div>
   </div>
 
 </div>

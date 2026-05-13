@@ -1,6 +1,6 @@
 SLIDE 5.2 — AUTONOMY BOUNDARIES
 TITLE BAR:
-Autonomy boundaries              authorization
+C2 — Autonomy boundaries              authorization
 DIAGRAM:
 A focused close-up of the card-hold gate from P3, lifted out of the
 system and given its own slide. Visual hierarchy: the gate is larger

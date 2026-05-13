@@ -36,11 +36,11 @@ class: mermaid-full
 
 ```mermaid
 flowchart LR
-    USER(["👤 USER"])
-    MODEL["MODEL"]
-    DECIDE{"DECIDE\nrespond or\ncall a tool?"}
-    TOOL["TOOL"]
-    RESULT["RESULT"]
+    USER(["👤 USER"]):::usr
+    MODEL["MODEL"]:::model
+    DECIDE{"DECIDE\nrespond or\ncall a tool?"}:::agent
+    TOOL["TOOL"]:::tool
+    RESULT["RESULT"]:::result
 
     USER -->|request| MODEL
     MODEL --> DECIDE
@@ -55,6 +55,12 @@ flowchart LR
         TOOL
         RESULT
     end
+
+    classDef usr fill:#0d2240,stroke:#58a6ff,color:#7dc6ff
+    classDef model fill:#1e3a5f,stroke:#4a90d9,color:#aecbfa,font-weight:700
+    classDef agent fill:#1e3a5f,stroke:#4a90d9,color:#aecbfa
+    classDef tool fill:#173326,stroke:#3cad72,color:#a8d5b5
+    classDef result fill:#161b22,stroke:#374151,color:#e6edf3
 ```
 
 <!--

@@ -1,6 +1,6 @@
 SLIDE 5.1 — NON-DETERMINISM & EVALS
 TITLE BAR:
-Non-determinism & evals          distributed systems / testing pyramid
+C1 — Non-determinism & evals          distributed systems / testing pyramid
 DIAGRAM:
 
 Top panel (~1/3 of slide), compressed:

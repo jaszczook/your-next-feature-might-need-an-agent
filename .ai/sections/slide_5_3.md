@@ -1,6 +1,6 @@
 SLIDE 5.3 — COST, LATENCY, DEPLOYMENT
 TITLE BAR:
-Cost, latency, deployment        sizing decisions
+C3 — Cost, latency, deployment        sizing decisions
 DIAGRAM:
 
 Three equal columns, same visual structure across all three.

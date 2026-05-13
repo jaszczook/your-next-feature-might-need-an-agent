@@ -160,6 +160,10 @@ complaint_handler_agent = LlmAgent(
 )
 ```
 
+<style scoped>
+.mermaid { width: 80% !important; }
+</style>
+
 <!--
 ## CUE
 - Too much → decompose
@@ -242,21 +246,28 @@ flowchart TD
     classDef gate fill:#2d1040,stroke:#9b59b6,color:#ce9aff,font-weight:700
 ```
 
-```python {11,12}
-# Cross-cutting: log every tool call.
+<div class="code-split">
+
+```python
 def audit_tool_call(tool, args, tool_context):
     logger.info(f"{tool.name} called with {args}")
 
-# Targeted: gate hold_card on human approval.
 def hold_card(card_id: str, reason: str) -> dict:
     return card_service.hold(card_id, reason)
+```
 
+<div v-click class="code-block-click">
+
+```python {3,4}
 complaint_handler_agent = LlmAgent(
     ...
     before_tool_callback=audit_tool_call,
     tools=[FunctionTool(func=hold_card, require_confirmation=True)],
 )
 ```
+
+</div>
+</div>
 
 <!--
 ## CUE
@@ -362,6 +373,10 @@ memory_service.add(
 )
 ```
 
+<style scoped>
+.mermaid { width: 78% !important; }
+</style>
+
 <!--
 ## CUE
 - Two kinds of memory
@@ -416,7 +431,10 @@ flowchart TD
         ORCH["COMPLAINT_HANDLER_AGENT\n(orchestrator)"]:::orch
     end
 
-    GATE["🔒 GATE"]:::gate
+    STATE["STATE\ndraft_response · customer_id …"]:::state
+    MEM[("MEMORY_SERVICE\npast complaints · patterns")]:::memory
+
+    GATE["🔒 GATE\nhuman confirm"]:::gate
     AA["ACCOUNT_AGENT"]:::agent
     FA["FRAUD_AGENT"]:::agent
     RA["RESPONSE_AGENT"]:::agent
@@ -427,20 +445,25 @@ flowchart TD
     CFP["check_fraud_patterns"]:::tool
     GPDF["generate_pdf"]:::tool
 
+    MCP_PILL("MCP"):::pill
+    A2A_PILL("A2A"):::pill
+
     AS["Account Service"]:::svc
-    FDB["Fraud DB\n(vendor / Risk team)"]:::ext
+    FDB["Fraud DB\n(Risk team)"]:::ext
     PDF["📄 PDF artifact"]:::artifact
     CS["Card Service"]:::svc
-    CCA["Customer Comms Agent\n(other team)"]:::ext
+    CCA["Customer Comms\nAgent (other team)"]:::ext
 
+    ORCH <--> STATE
+    ORCH -. "session ends" .-> MEM
     ORCH --> AA & FA & RA
     ORCH --> GATE --> HC
     AA --> GA & GT
     FA --> CFP
     RA --> GPDF
-    RA -->|A2A| CCA
+    RA --> A2A_PILL --> CCA
     GA & GT --> AS
-    CFP -->|MCP| FDB
+    CFP --> MCP_PILL --> FDB
     GPDF --> PDF
     HC --> CS
 
@@ -450,8 +473,26 @@ flowchart TD
     classDef svc fill:#211500,stroke:#c47b2a,color:#f0c87a
     classDef artifact fill:#102828,stroke:#3ecec4,color:#a0f0ec
     classDef gate fill:#2d1040,stroke:#9b59b6,color:#ce9aff,font-weight:700
-    classDef ext fill:#1a1a20,stroke:#555,color:#8b949e,stroke-dasharray:5 5
+    classDef state fill:#102828,stroke:#3ecec4,color:#a0f0ec,font-weight:700
+    classDef memory fill:#1e1000,stroke:#e07020,color:#f0a060
+    classDef ext fill:#1a1010,stroke:#6b3030,color:#9b7070,stroke-dasharray:4 3
+    classDef pill fill:#001a20,stroke:#00b4d8,color:#90e0ef,font-weight:700,stroke-width:2px
 ```
+
+<style scoped>
+.mermaid { width: 88% !important; }
+</style>
+
+<div class="mcp-strip">
+  <div class="mcp-col-hdr rest-col">REST API</div>
+  <div class="mcp-col-hdr mcp-col">MCP</div>
+  <div class="rest-col">every consumer</div>
+  <div class="mcp-col">the LLM</div>
+  <div class="rest-col">full surface area</div>
+  <div class="mcp-col">curated surface</div>
+  <div class="rest-col">bytes on the wire</div>
+  <div class="mcp-col">tokens in the window</div>
+</div>
 
 <!--
 ## CUE
