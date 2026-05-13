@@ -15,7 +15,8 @@
 }
 
 /* ─── Title slide ───────────────────────────────────────────── */
-.talk-title {
+/* .slidev-layout prefix gives specificity (0,2,0) > Slidev's (0,1,1) h/p rules */
+.slidev-layout .talk-title {
   font-size: 3em;
   font-weight: 300;
   line-height: 1.15;
@@ -24,38 +25,44 @@
   margin: 0 0 0.45em;
 }
 
-.talk-meta {
+.slidev-layout .talk-meta {
   color: #8b949e;
   font-size: 0.9em;
+  line-height: 1.5;
   margin: 0;
 }
 
 /* ─── Definition / punchline / section dividers ─────────────── */
-.def-text {
+.slidev-layout .def-text {
   font-size: 2.5em;
   font-weight: 300;
   line-height: 1.3;
   color: #e6edf3;
+  margin: 0;
 }
 
-.section-heading {
+.slidev-layout .section-heading {
   font-size: 2.8em;
   font-weight: 300;
+  line-height: 1.2;
   margin: 0 0 0.3em;
   color: #e6edf3;
 }
 
-.section-sub {
+.slidev-layout .section-sub {
   font-size: 0.9em;
   color: #8b949e;
   letter-spacing: 0.04em;
+  line-height: 1.5;
+  margin: 0;
 }
 
-.punchline-text {
+.slidev-layout .punchline-text {
   font-size: 2.1em;
   font-weight: 300;
   line-height: 1.3;
   color: #e6edf3;
+  margin: 0;
 }
 
 .dim { color: #8b949e; }
@@ -87,14 +94,15 @@
   gap: 0.3em;
 }
 
-.about-info h2 {
+.slidev-layout .about-info h2 {
   font-size: 1.5em;
   font-weight: 500;
+  line-height: 1.3;
   color: #58a6ff;
   margin: 0 0 0.5em;
 }
 
-.about-info p {
+.slidev-layout .about-info p {
   margin: 0.1em 0;
   font-size: 0.95em;
   line-height: 2.1;
@@ -141,7 +149,7 @@
   text-align: center;
 }
 
-/* ─── Problem slides (P1–P4): title-bar + diagram + code ─────── */
+/* ─── Problem slides (P1–P5): title-bar + diagram + code ─────── */
 .problem-slide-wrap.slidev-layout {
   display: flex !important;
   flex-direction: column !important;
@@ -150,13 +158,12 @@
   box-sizing: border-box;
 }
 
+/* Title-bar wrapper — auto height, just holds the title bar */
 .problem-slide {
-  flex: 0 0 62%;
+  flex: 0 0 auto;
   display: flex;
   flex-direction: column;
   gap: 0.3em;
-  overflow: hidden;
-  min-height: 0;
 }
 
 .title-bar {
@@ -173,6 +180,7 @@
 .tb-l { font-weight: 700; color: #e6edf3; }
 .tb-r { color: #8b949e; }
 
+/* Keep .dia/.dia-full for SVG-only slides (Events) */
 .dia {
   flex: 1 1 0;
   min-height: 0;
@@ -185,10 +193,21 @@
   height: 100%;
 }
 
+/* Mermaid block as flex child of problem-slide-wrap */
+.problem-slide-wrap.slidev-layout > .mermaid {
+  flex: 1 1 0;
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* Code blocks inside problem slides */
 .problem-slide-wrap div[class^="language-"],
 .problem-slide-wrap div[class*=" language-"] {
-  flex: 0 0 35% !important;
+  flex: 0 0 auto !important;
+  max-height: 32% !important;
   overflow: hidden !important;
   border-radius: 6px !important;
   margin: 0 !important;
@@ -204,7 +223,7 @@
   overflow: hidden;
 }
 
-/* ─── Diagram-only slides (P5, Events, Autonomy) ─────────────── */
+/* ─── Diagram-only slides (Events, Autonomy) ─────────────────── */
 .dia-slide.slidev-layout {
   display: flex !important;
   flex-direction: column !important;
@@ -224,6 +243,16 @@
   display: block;
   width: 100%;
   height: 100%;
+}
+
+/* Mermaid in dia-slide */
+.dia-slide.slidev-layout > .mermaid {
+  flex: 1 1 0;
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* ─── Two-panel slide (3.2 Assistive shape) ──────────────────── */
@@ -452,39 +481,45 @@
 .col-yes { font-size: 0.82em; color: #e6edf3; font-weight: 600; }
 
 /* ─── Quote / full-stack redefinition slide ──────────────────── */
-.quote-text {
+.slidev-layout .quote-text {
   font-size: 1.25em;
   font-style: italic;
   color: #8b949e;
   line-height: 1.55;
-  margin-bottom: 0.8em;
+  margin: 0 0 0.8em;
 }
 
-.own-text {
+.slidev-layout .own-text {
   font-size: 1.25em;
   color: #58a6ff;
   font-weight: 500;
   line-height: 1.55;
+  margin: 0;
 }
 
 /* ─── Thanks ─────────────────────────────────────────────────── */
-.thanks-word {
+.slidev-layout .thanks-word {
   font-size: 5em;
   font-weight: 300;
+  line-height: 1.2;
   color: #e6edf3;
+  margin: 0;
 }
 
 /* ─── Bridge slide ───────────────────────────────────────────── */
-.bridge-main {
+.slidev-layout .bridge-main {
   font-size: 2em;
   font-weight: 300;
+  line-height: 1.3;
   color: #e6edf3;
   margin: 0 0 0.4em;
 }
 
-.bridge-sub {
+.slidev-layout .bridge-sub {
   color: #8b949e;
   font-size: 0.85em;
+  line-height: 1.5;
+  margin: 0;
 }
 
 /* ─── Hide slide number ──────────────────────────────────────── */

@@ -197,15 +197,13 @@ user delegates
 long leash (mostly)
 you're building an agent
 
-STYLE NOTES FOR THE DOG SKETCHES:
+IMPLEMENTATION NOTE:
 
-Minimalist line drawings, NOT stock photos.
-Monochrome.
-Same style across both — same line weight, same proportions.
-Speech bubbles, not captions — emphasizes the person is speaking
-to the dog (the metaphor is about instructions, not descriptions).
-Exaggerate the leash difference: top = visibly tight, bottom =
-visibly slack.
+Dog sketch images are provided by the speaker and placed in the
+`.dog-sketch` div in slides/section3.md. The slide layout (two rows,
+header column, label column) is already coded. Just drop the images in.
+Images should be monochrome, wide-format (wider than tall), with visible
+leash length difference between the two rows.
 
 DESIGN NOTES:
 
