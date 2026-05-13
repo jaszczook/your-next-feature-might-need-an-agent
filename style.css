@@ -149,25 +149,60 @@
   text-align: center;
 }
 
-/* ─── Problem slides (P1–P5): title-bar + diagram + code ─────── */
-.problem-slide-wrap.slidev-layout {
-  display: flex !important;
-  flex-direction: column !important;
+/* ─── P1 stacked layout: title top, diagram middle, code bottom ─── */
+.problem-slide-stack.slidev-layout {
+  display: grid !important;
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: 1fr;
+  grid-template-areas: "title" "diagram" "code";
   padding: 0.9em 1.4em !important;
-  gap: 0.35em;
+  row-gap: 0.35em;
   box-sizing: border-box;
   overflow: hidden !important;
 }
 
-/* Title-bar wrapper — auto height, just holds the title bar */
-.problem-slide {
-  flex: 0 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 0.3em;
+.problem-slide-stack .mermaid {
+  grid-area: diagram;
+  overflow: hidden;
+  min-height: 0;
+  width: 65%;
+  margin: 0 auto;
+}
+
+.problem-slide-stack div[class^="language-"],
+.problem-slide-stack div[class*=" language-"],
+.problem-slide-stack .mcp-strip {
+  grid-area: code;
+  overflow: hidden !important;
+  border-radius: 6px !important;
+  margin: 0 !important;
+}
+
+.problem-slide-stack div[class^="language-"] pre,
+.problem-slide-stack div[class*=" language-"] pre {
+  padding: 0.55em 0.8em !important;
+  font-size: 0.56em !important;
+  line-height: 1.45 !important;
+  margin: 0 !important;
+  overflow: hidden;
+}
+
+/* ─── Problem slides (P2–P4): title top, diagram left, code right ── */
+/* Grid layout so tall TD flowcharts have full slide height to fill    */
+.problem-slide-wrap.slidev-layout {
+  display: grid !important;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: 58% 42%;
+  grid-template-areas: "title title" "diagram code";
+  padding: 0.9em 1.4em !important;
+  column-gap: 0.8em;
+  row-gap: 0.35em;
+  box-sizing: border-box;
+  overflow: hidden !important;
 }
 
 .title-bar {
+  grid-area: title;
   display: flex;
   justify-content: space-between;
   align-items: baseline;
@@ -175,52 +210,25 @@
   border-bottom: 1px solid #30363d;
   padding-bottom: 0.4em;
   font-family: 'Courier New', monospace;
-  flex-shrink: 0;
 }
 
 .tb-l { font-weight: 700; color: #e6edf3; }
 .tb-r { color: #8b949e; }
 
-/* Keep .dia/.dia-full for SVG-only slides (Events) */
-.dia {
-  flex: 1 1 0;
-  min-height: 0;
+.problem-slide-wrap .mermaid {
+  grid-area: diagram;
   overflow: hidden;
-}
-
-.dia svg {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-/* Mermaid block as flex child of problem-slide-wrap.
-   Descendant (not >) in case Slidev wraps the component in an extra div. */
-.problem-slide-wrap.slidev-layout .mermaid {
-  flex: 1 1 0;
   min-height: 0;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
-.problem-slide-wrap .mermaid svg {
-  max-width: 100% !important; /* override Mermaid's inline max-width */
-  max-height: 100%;
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* Code blocks inside problem slides */
+/* Code block fills the right column, vertically centered */
 .problem-slide-wrap div[class^="language-"],
 .problem-slide-wrap div[class*=" language-"] {
-  flex: 0 0 auto !important;
-  max-height: 32% !important;
+  grid-area: code;
   overflow: hidden !important;
   border-radius: 6px !important;
   margin: 0 !important;
+  align-self: center;
 }
 
 .problem-slide-wrap div[class^="language-"] pre,
@@ -229,7 +237,6 @@
   font-size: 0.56em !important;
   line-height: 1.45 !important;
   margin: 0 !important;
-  height: 100%;
   overflow: hidden;
 }
 
@@ -256,23 +263,13 @@
   height: 100%;
 }
 
-/* Mermaid in dia-slide — descendant selector for robustness */
+/* Mermaid host fills remaining flex space in dia-slides */
 .dia-slide.slidev-layout .mermaid {
   flex: 1 1 0;
   min-height: 0;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
-
-.dia-slide .mermaid svg {
-  max-width: 100% !important;
-  max-height: 100%;
-  width: 100%;
-  height: auto;
-  display: block;
-}
+/* SVG sizing handled by shadow DOM injection in setup/main.ts */
 
 /* ─── Two-panel slide (3.2 Assistive shape) ──────────────────── */
 .two-panel {
@@ -526,38 +523,35 @@
   margin: 0;
 }
 
-/* ─── Mermaid sizing — top-level blocks in slide layouts ─────── */
-/* Catch-all for any non-title, non-code direct children in problem slides
-   (handles wrapper divs that Slidev might insert) */
-.problem-slide-wrap > :not(.title-bar):not([class*="language-"]) {
-  flex: 1 1 0;
-  min-height: 0;
-  overflow: hidden;
-}
+/* ─── Mermaid sizing ─────────────────────────────────────────────
+   SVG sizing is handled via shadow DOM injection in setup/main.ts.
+   The catch-all below keeps dia-slide non-mermaid elements in line. */
 
-/* Catch-all for dia-only slides */
+/* Catch-all for dia-only slides (handles any direct children) */
 .dia-slide > :not(.title-bar):not(.event-props):not(.three-cols):not(.mcp-strip) {
   flex: 1 1 0;
   min-height: 0;
   overflow: hidden;
 }
 
-/* ─── Standalone mermaid slides (center layout, no other content) */
+/* ─── Standalone mermaid slides (center layout) ─────────────────
+   center layout = grid + place-content-center + <div class="my-auto"> wrapper.
+   Override to flex column; align-items:stretch gives children full width so
+   width:100% on the SVG (injected into shadow DOM) resolves to slide width.
+   The .my-auto class supplies margin:auto which centers vertically. */
 .mermaid-full.slidev-layout {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
   padding: 2em 3em !important;
+}
+
+.mermaid-full.slidev-layout > .my-auto {
+  width: 100%;
 }
 
 .mermaid-full .mermaid {
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.mermaid-full .mermaid svg {
-  max-width: none !important;
-  width: 100%;
-  height: auto;
   display: block;
 }
 

@@ -21,7 +21,7 @@ Problem one. The agent needs to do something.
 -->
 
 ---
-class: problem-slide-wrap
+class: problem-slide-stack
 ---
 
 <div class="title-bar">
@@ -88,7 +88,7 @@ Problem two: this one agent is fine for now, but it's about to be doing too much
 -->
 
 ---
-class: problem-slide-wrap
+class: problem-slide-stack
 ---
 
 <div class="title-bar">
@@ -166,7 +166,7 @@ Problem three. About that card hold.
 -->
 
 ---
-class: problem-slide-wrap
+class: problem-slide-stack
 ---
 
 <div class="title-bar">
@@ -263,7 +263,7 @@ Problem four. The agent needs to remember things.
 -->
 
 ---
-class: problem-slide-wrap
+class: problem-slide-stack
 ---
 
 <div class="title-bar">
@@ -358,12 +358,12 @@ One more problem, and then we zoom out.
 -->
 
 ---
-class: dia-slide
+class: problem-slide-stack
 ---
 
 <div class="title-bar">
   <span class="tb-l">P5 — Protocols</span>
-  <span class="tb-r">designed for LLMs / OpenAPI for agents</span>
+  <span class="tb-r">OpenAPI for agents</span>
 </div>
 
 ```mermaid
@@ -409,17 +409,6 @@ flowchart TD
     classDef ext fill:#1a1a20,stroke:#555,color:#8b949e,stroke-dasharray:5 5
 ```
 
-<div class="mcp-strip">
-  <div class="mcp-col-hdr">REST API</div>
-  <div class="mcp-col-hdr">MCP</div>
-  <div class="mcp-cell">every consumer</div>
-  <div class="mcp-cell">the LLM</div>
-  <div class="mcp-cell">full surface area</div>
-  <div class="mcp-cell">curated surface</div>
-  <div class="mcp-cell">bytes on the wire</div>
-  <div class="mcp-cell">tokens in the window</div>
-</div>
-
 <!--
 ## FLOW
 - Problem five is different: not adding to the system, pointing at things already there
@@ -459,7 +448,7 @@ class: dia-slide
 ---
 
 <div class="title-bar">
-  <span class="tb-l">Events</span>
+  <span class="tb-l">P6 — Events</span>
   <span class="tb-r">the bus underneath</span>
 </div>
 
