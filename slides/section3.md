@@ -309,6 +309,6 @@ the natural unit of work for the user is a goal and not a step — when
 'behave' is the right instruction — that's when you reach for an
 agent.
 The Cmd+K example is what I want to dig into for the next nine minutes.
-Five problems you'll hit when you build something like that. All five
+Six problems you'll hit when you build something like that. All six
 have analogues you already know."
 -->

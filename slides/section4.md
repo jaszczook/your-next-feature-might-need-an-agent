@@ -3,27 +3,27 @@ layout: center
 ---
 
 <div class="min-center">
-  <p class="section-heading">Five problems</p>
-  <p class="section-sub">tools &nbsp;·&nbsp; orchestration &nbsp;·&nbsp; callbacks &nbsp;·&nbsp; state &nbsp;·&nbsp; protocols</p>
+  <p class="section-heading">Six problems</p>
+  <p class="section-sub">tools &nbsp;·&nbsp; orchestration &nbsp;·&nbsp; callbacks &nbsp;·&nbsp; state &nbsp;·&nbsp; protocols &nbsp;·&nbsp; events</p>
 </div>
 
 <!--
 ## CUE
-- Five problems, one feature
+- Six problems, one feature
 - Agent term + software analogue
 - → agent needs to act
 
 ---
 
 ## FLOW
-- Introduce the five-problem frame for the Cmd+K feature build
+- Introduce the six-problem frame for the Cmd+K feature build
 - Name each problem's agent-land term alongside its regular-software analogue
 - → transition to Problem one: the agent needs to do something
 
 ---
 
 ## SPOKEN
-Okay. The Cmd+K feature. If you actually sit down to build this thing, five problems will hit you in roughly this order. Each one has a name in agent-land and a name in regular software, and I'm going to give you both — because once you see the analogy, the agent version stops feeling weird.
+Okay. The Cmd+K feature. If you actually sit down to build this thing, six problems will hit you in roughly this order. Each one has a name in agent-land and a name in regular software, and I'm going to give you both — because once you see the analogy, the agent version stops feeling weird.
 Problem one. The agent needs to do something.
 -->
 
@@ -246,28 +246,19 @@ flowchart TD
     classDef gate fill:#2d1040,stroke:#9b59b6,color:#ce9aff,font-weight:700
 ```
 
-<div class="code-split">
-
-```python
+```python {9,10}
 def audit_tool_call(tool, args, tool_context):
     logger.info(f"{tool.name} called with {args}")
 
 def hold_card(card_id: str, reason: str) -> dict:
     return card_service.hold(card_id, reason)
-```
 
-<div v-click class="code-block-click">
-
-```python {3,4}
 complaint_handler_agent = LlmAgent(
     ...
     before_tool_callback=audit_tool_call,
     tools=[FunctionTool(func=hold_card, require_confirmation=True)],
 )
 ```
-
-</div>
-</div>
 
 <!--
 ## CUE
@@ -483,7 +474,7 @@ flowchart TD
 .mermaid { width: 88% !important; }
 </style>
 
-<div class="mcp-strip">
+<div v-click v-click.hide class="mcp-strip">
   <div class="mcp-col-hdr rest-col">REST API</div>
   <div class="mcp-col-hdr mcp-col">MCP</div>
   <div class="rest-col">every consumer</div>
@@ -515,11 +506,11 @@ flowchart TD
 - Two arrows cross a line
 - [point at MCP pill — beat] Fraud DB belongs to the risk team — bespoke client breaks; you want a protocol; that protocol is MCP
 - Push back on "isn't this just OpenAPI?" — MCP and REST solve overlapping problems for different consumers
-- [gesture at the comparison strip — beat] REST is wide, for every consumer; MCP is curated for an LLM in a finite context window
+- [CLICK — strip appears] [gesture at the comparison strip — beat] REST is wide, for every consumer; MCP is curated for an LLM in a finite context window
 - MCP is less like a REST API, more like a well-scoped SDK discoverable at runtime
-- [point at A2A pill — beat] response_agent handing off to another team's agent — not a tool call; one agent talking to another; that's A2A
+- [CLICK — strip disappears] [point at A2A pill — beat] response_agent handing off to another team's agent — not a tool call; one agent talking to another; that's A2A
 - Same allegory twice at two scopes; both exist for the same reason as OpenAPI between services
-- [beat] Five problems, five patterns; before what's hard, one slide on the runtime that ties it together
+- [beat] Five down, problem six is the substrate underneath
 
 ---
 
@@ -531,15 +522,17 @@ But two of these arrows cross a line.
 [point at MCP pill — beat]
 The Fraud DB isn't yours. It belongs to the risk team — different team, different repo, different release cadence. When your tool calls into it, you're talking to a system that someone else maintains. How do you describe that interface? You don't want a bespoke client that breaks every time they ship. You want a protocol. That protocol is MCP.
 And here's where I want to push back on a thing you might be thinking, which is 'isn't this just OpenAPI?' Almost, but not exactly. MCP and REST solve overlapping problems for different consumers, and the difference matters.
+[CLICK — comparison strip appears]
 [gesture at the comparison strip — beat]
 A REST API is designed for every consumer — your frontend, batch jobs, mobile, partner teams, scripts. So it tends to be wide: hundreds of endpoints, deep object graphs, generous response payloads. That's correct, for a human-or-machine consumer that can handle arbitrary data.
 MCP is designed for an LLM. The consumer is sitting in a context window with a finite token budget, and every byte you hand it costs attention and money. So MCP servers tend to expose a curated surface — a smaller set of operations, each with descriptions the model can actually read, return shapes that are compact enough not to clutter the context, and metadata about when each tool is appropriate. It's less like a REST API and more like a well-scoped SDK that happens to be discoverable at runtime.
 If REST is 'here's everything we can do, you figure out what you need,' MCP is 'here are the five things an agent would sensibly want to do, with documentation aimed at the model.' Same network plumbing underneath; very different design discipline on top.
+[CLICK — comparison strip disappears]
 [point at A2A pill — beat]
 And the response agent — when it needs to hand a draft off to the customer comms agent that another team owns, that's not a tool call anymore. That's one agent talking to another agent. Same problem, one level up. That's A2A. OpenAPI, but for agents.
 The same allegory twice, at two scopes. MCP names tool boundaries. A2A names agent boundaries. Both exist for the same reason OpenAPI exists between services — to keep two teams from breaking each other when they ship independently — with the added discipline of being designed for an LLM as a consumer.
 [beat]
-And that's the five problems. Five patterns, all of them analogues of things you already do. Before we talk about what's hard, one slide on the runtime that ties this all together.
+Five down. Five patterns, all of them analogues of things you already do. Problem six is the substrate that ties them together.
 -->
 
 ---
@@ -556,21 +549,22 @@ sequenceDiagram
     actor U as USER
     participant A as AGENT
     participant T as TOOLS
-    participant H as 🧑 HUMAN
 
     U->>A: user_message
     activate A
     A->>T: tool_call — get_account
     T-->>A: tool_response
     A->>T: tool_call — hold_card
-    activate H
-    T-->>H: ⏸ approval_request
-    H-->>T: ▶ approval_response
-    deactivate H
+    T-->>U: ⏸ approval_request
+    U-->>T: ▶ approval_response
     T-->>A: result
     deactivate A
     A-->>U: final_response
 ```
+
+<style scoped>
+.mermaid { width: 70% !important; margin: 0 auto !important; display: block !important; }
+</style>
 
 <div class="event-props">
   <span><b>observability</b> — every action is already logged</span>
@@ -606,7 +600,7 @@ sequenceDiagram
 ---
 
 ## SPOKEN
-One slide before we talk about what's hard. I want to show you the runtime substrate that ties everything we just built together, because it's the piece that's easiest to miss if you only look at the agent code.
+Problem six. The runtime substrate that ties everything we just built together — and the one easiest to miss if you only look at the agent code.
 Everything an ADK agent does is an event. Not metaphorically — literally. When the user sends a message, that's an event. When the model decides to call a tool, that's an event. When the tool returns, that's an event. When the long-running hold_card tool yields its approval request, that's an event. When the analyst clicks approve two minutes later, that's an event, and the runtime feeds it back into the agent and the run continues.
 [point at the stream — beat]
 The orchestrator, the sub-agents, the callbacks, the tools — they're all producers and consumers on this stream. The diagram on top is what you write. The stream underneath is what actually runs.
@@ -616,6 +610,6 @@ Observability. You don't need to instrument your agent to know what it did. The 
 Persistence. State, sessions, conversation history — those aren't separate concepts. They're projections of the event stream. The framework can replay events to reconstruct where a conversation was when the process died, or when a long-running tool finally got its human response.
 Which is the third thing: resumability. The reason the human-in-the-loop pattern from problem three actually works in production — not just in a notebook — is that the runtime can pause the event stream at the approval request, persist it, and resume it on a different machine two hours later. That's not magic; that's just sourcing your state from events.
 [beat]
-So when you build with ADK, you're not just writing an agent. You're writing producers on an event bus that already knows how to log, checkpoint, and resume. The patterns from the last five slides are the shape. Events are the substrate. Both matter.
+So when you build with ADK, you're not just writing an agent. You're writing producers on an event bus that already knows how to log, checkpoint, and resume. The five patterns from the last five slides are the shape. Events are the substrate. Both matter.
 Now, what's actually hard.
 -->

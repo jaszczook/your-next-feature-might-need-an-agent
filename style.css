@@ -180,24 +180,11 @@
 
 .problem-slide-stack div[class^="language-"] pre,
 .problem-slide-stack div[class*=" language-"] pre {
-  padding: 0.55em 0.8em !important;
-  font-size: 0.56em !important;
-  line-height: 1.45 !important;
+  padding: 0.45em 0.8em !important;
+  font-size: 0.52em !important;
+  line-height: 1.38 !important;
   margin: 0 !important;
   overflow: hidden;
-}
-
-/* Split code block (P3) — second part revealed on click */
-.problem-slide-stack .code-split {
-  grid-area: code;
-  display: flex;
-  flex-direction: column;
-  gap: 0.3em;
-  overflow: hidden;
-}
-
-.code-block-click.slidev-vclick-hidden {
-  display: none;
 }
 
 /* ─── Problem slides (P2–P4): title top, diagram left, code right ── */
@@ -508,20 +495,24 @@
   padding: 1.2em;
   display: flex;
   flex-direction: column;
-  gap: 0.55em;
+  gap: 1em;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: rgba(255,255,255,0.02);
 }
 
 .col-hdr {
-  font-size: 0.72em;
+  font-size: 1em;
   font-weight: 700;
   letter-spacing: 0.08em;
   color: #58a6ff;
   text-transform: uppercase;
 }
 
-.col-icon { font-size: 2em; line-height: 1; }
-.col-not { font-size: 0.78em; color: #6b7280; text-decoration: line-through; }
-.col-yes { font-size: 0.82em; color: #e6edf3; font-weight: 600; }
+.col-icon { font-size: 3.5em; line-height: 1; }
+.col-not { font-size: 1em; color: #6b7280; text-decoration: line-through; }
+.col-yes { font-size: 1.05em; color: #e6edf3; font-weight: 600; }
 
 /* ─── Quote / full-stack redefinition slide ──────────────────── */
 .slidev-layout .quote-text {

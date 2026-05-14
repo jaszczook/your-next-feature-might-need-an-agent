@@ -89,7 +89,6 @@ exists between services — to keep two teams from breaking each other
 when they ship independently — with the added discipline of being
 designed for an LLM as a consumer.
 [beat]
-And that's the five problems. Five patterns, all of them analogues of
-things you already do. Before we talk about what's hard, one slide
-on the runtime that ties this all together."
+Five down. Five patterns, all of them analogues of things you already
+do. Problem six is the substrate that ties them together."
 DURATION: ~120 seconds.

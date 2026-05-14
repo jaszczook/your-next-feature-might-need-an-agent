@@ -38,7 +38,7 @@ class: dia-slide
 </div>
 
 ```mermaid
-flowchart TB
+flowchart LR
     subgraph ND["Same input → different outputs (all valid)"]
         direction TB
         P["'dispute on account 4821'"]:::prompt

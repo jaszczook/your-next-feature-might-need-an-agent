@@ -1,6 +1,6 @@
-SLIDE 4.6 — EVENTS: THE RUNTIME SUBSTRATE
+SLIDE 4.6 — P6: EVENTS: THE RUNTIME SUBSTRATE
 TITLE BAR:
-Events                            the bus underneath
+P6 — Events                       the bus underneath
 DIAGRAM:
 A different layout from the P1-P5 slides — the system we just built
 is now schematic and small in the upper portion of the slide, because
@@ -42,10 +42,9 @@ it click.
 
 NO SNIPPET. The slide is dense enough visually.
 SPOKEN:
-"One slide before we talk about what's hard. I want to show you the
-runtime substrate that ties everything we just built together,
-because it's the piece that's easiest to miss if you only look at
-the agent code.
+"Problem six. The runtime substrate that ties everything we just built
+together — and the one easiest to miss if you only look at the agent
+code.
 Everything an ADK agent does is an event. Not metaphorically — literally.
 When the user sends a message, that's an event. When the model decides
 to call a tool, that's an event. When the tool returns, that's an event.
@@ -78,7 +77,7 @@ from events.
 [beat]
 So when you build with ADK, you're not just writing an agent. You're
 writing producers on an event bus that already knows how to log,
-checkpoint, and resume. The patterns from the last five slides are
+checkpoint, and resume. The five patterns from the last five slides are
 the shape. Events are the substrate. Both matter.
 Now, what's actually hard."
 DURATION: ~110 seconds.
