@@ -86,6 +86,7 @@ layout: center
 ## CUE
 - The riff — joke, but points at something real
 - Definition keeps moving (2006 → 2016 → 2026)
+- **Aside: full-stack = curious, not omniscient — FE, BE, CI/CD, infra, even how projects get run**
 - [pause] → click → "I think it's moving again"
 - Own line: "if you don't ship agents…"
 - Honest ambivalence: don't fully believe it yet — say that
@@ -97,6 +98,7 @@ layout: center
 ## FLOW
 - [STATE 1] Introduce the recurring industry riff; name the joke and what it genuinely points at
 - [STATE 1] Land the beat: the definition keeps moving — 2006, 2016, 2026 is the implicit arc
+- **[STATE 1, just before the pause] Add the personal definition aside: full-stack has never meant knowing everything — it means being curious. FE, BE, CI/CD, infra, how projects get decided. That breadth is the thread. This makes the "if you don't ship agents" line land harder — you've told them what full-stack means to you before telling them it's moving again.**
 - [pause — then click] "I think it's moving again" — short, let it sit
 - [STATE 2] Deliver own line with honest ambivalence: "I don't fully believe that. Not yet."
 - **[STATE 2] The bifurcated closing is the emotional core of the whole talk. Don't rush the builder/coder distinction. Both halves of the room are real, and they need to hear their half acknowledged.**
@@ -107,6 +109,9 @@ layout: center
 ## SPOKEN
 There's a riff that goes around every few years in our industry. Some version of: "if you don't design silicon, you're not a full-stack developer." If you don't write your own database, you're not full-stack. If you don't run your own kernel, if you don't do your own DevOps, if you don't, if you don't, if you don't.
 It's a joke, mostly. But it points at a real thing — the definition of full-stack keeps moving. What we mean by "full-stack" in 2026 is not what we meant in 2016, and it's very not what we meant in 2006.
+
+And to me, full-stack has never really meant "knows everything." It's meant curious. Interested in the front end and the back end, yes — but also CI/CD, infrastructure, and honestly even how projects get decided and run. That breadth, that willingness to follow a problem wherever it goes — that's the thread.
+
 [pause — then advance to State 2]
 
 [click]

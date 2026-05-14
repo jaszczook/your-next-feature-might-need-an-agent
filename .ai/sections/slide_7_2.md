@@ -32,6 +32,8 @@ Same line-break structure as the original quote — the rhythm should match.
 
 It's a joke, mostly. But it points at a real thing — the definition of full-stack keeps moving. What we mean by 'full-stack' in 2026 is not what we meant in 2016, and it's very not what we meant in 2006.
 
+And to me, full-stack has never really meant 'knows everything.' It's meant curious. Interested in the front end and the back end, yes — but also CI/CD, infrastructure, and honestly even how projects get decided and run. That breadth, that willingness to follow a problem wherever it goes — that's the thread. That's what makes someone full-stack.
+
 [pause — then advance to State 2]
 
 I think it's moving again."
