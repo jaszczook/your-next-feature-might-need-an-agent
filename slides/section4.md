@@ -67,7 +67,7 @@ flowchart TD
     classDef svc fill:#211500,stroke:#c47b2a,color:#f0c87a
 ```
 
-```python {8}
+```python {all|1-3|2|8}
 def hold_card(card_id: str, reason: str) -> dict:
     """Place a temporary hold on a card. Use when fraud is suspected."""
     return card_service.hold(card_id, reason)
@@ -162,7 +162,7 @@ flowchart TD
     classDef artifactnew fill:#102828,stroke:#f0a500,color:#a0f0ec,stroke-width:2.5px
 ```
 
-```python {4}
+```python {all|4|5}
 complaint_handler_agent = LlmAgent(
     model="gemini-2.5-flash",
     name="complaint_handler",
@@ -260,7 +260,7 @@ flowchart TD
     style audit stroke:#f0a500,stroke-width:2.5px
 ```
 
-```python {9,10}
+```python {all|1-2,9|4-5,10}
 def audit_tool_call(tool, args, tool_context):
     logger.info(f"{tool.name} called with {args}")
 
@@ -368,7 +368,7 @@ flowchart TD
     classDef memorynew fill:#1e1000,stroke:#f0a500,color:#f0a060,stroke-width:2.5px
 ```
 
-```python {2,5-9}
+```python {all|1-2|4-9}
 # Inside a tool — short-term state for this conversation
 tool_context.state["draft_response"] = text
 

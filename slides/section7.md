@@ -1,26 +1,24 @@
 ---
 layout: center
-class: mermaid-full
 ---
 
-```mermaid
-flowchart LR
-    SL["SHORT LEASH\nevery step approved"]:::ep
-    LL["LONG LEASH\nacts and reports"]:::ep
-
-    D1(["●\nus, two years ago"]):::dotL
-    D2(["●\nus, today"]):::dotR
-    D3(["●\nthe people we build for"]):::dotL
-
-    SL --- D1
-    SL --- D3
-    D2 --- LL
-    D1 -. "extended over 2 years" .-> D2
-
-    classDef ep fill:#0d1117,stroke:#e6edf3,color:#e6edf3,font-weight:700
-    classDef dotL fill:#1e3a5f,stroke:#4a90d9,color:#aecbfa
-    classDef dotR fill:#173326,stroke:#3cad72,color:#a8d5b5
-```
+<div style="width:100%;max-width:820px">
+<svg viewBox="0 0 810 290" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;overflow:visible">
+  <line x1="260" y1="55" x2="750" y2="55" stroke="#374151" stroke-width="2"/>
+  <polygon points="750,50 764,55 750,60" fill="#374151"/>
+  <text x="260" y="26" text-anchor="middle" font-family="'Courier New',monospace" font-size="13" font-weight="700" fill="#e6edf3">SHORT LEASH</text>
+  <text x="260" y="42" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#6b7280">every step approved</text>
+  <text x="757" y="26" text-anchor="middle" font-family="'Courier New',monospace" font-size="13" font-weight="700" fill="#e6edf3">LONG LEASH</text>
+  <text x="757" y="42" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#6b7280">acts and reports</text>
+  <line x1="260" y1="70" x2="260" y2="268" stroke="#21262d" stroke-width="1.5" stroke-dasharray="5,5"/>
+  <text x="246" y="123" text-anchor="end" font-family="system-ui,sans-serif" font-size="12" fill="#6b7280">us, two years ago</text>
+  <circle cx="260" cy="118" r="9" fill="#1e3a5f" stroke="#4a90d9" stroke-width="1.5"/>
+  <text x="246" y="183" text-anchor="end" font-family="system-ui,sans-serif" font-size="12" fill="#6b7280">us, today</text>
+  <circle cx="757" cy="178" r="9" fill="#1e3a5f" stroke="#4a90d9" stroke-width="1.5"/>
+  <text x="246" y="243" text-anchor="end" font-family="system-ui,sans-serif" font-size="12" fill="#c9d1d9">the people we build for, today</text>
+  <circle cx="260" cy="238" r="9" fill="#1e3a5f" stroke="#4a90d9" stroke-width="1.5"/>
+</svg>
+</div>
 
 <!--
 ## CUE
