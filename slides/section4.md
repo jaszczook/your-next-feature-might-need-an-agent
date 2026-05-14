@@ -124,11 +124,11 @@ class: problem-slide-stack
 
 ```mermaid
 flowchart TD
-    ORCH["COMPLAINT_HANDLER_AGENT\n(orchestrator)"]:::orch
+    ORCH["COMPLAINT_HANDLER_AGENT\n(orchestrator)"]:::orchnew
 
-    AA["ACCOUNT_AGENT"]:::agent
-    FA["FRAUD_AGENT"]:::agent
-    RA["RESPONSE_AGENT"]:::agent
+    AA["ACCOUNT_AGENT"]:::agentnew
+    FA["FRAUD_AGENT"]:::agentnew
+    RA["RESPONSE_AGENT"]:::agentnew
     HC["hold_card"]:::tool
 
     GA["get_account"]:::tool
@@ -138,7 +138,7 @@ flowchart TD
 
     AS["Account Service"]:::svc
     FDB["Fraud DB"]:::svc
-    PDF["📄 PDF artifact"]:::artifact
+    PDF["📄 PDF artifact"]:::artifactnew
     CS["Card Service"]:::svc
 
     ORCH --> AA & FA & RA
@@ -152,11 +152,14 @@ flowchart TD
     HC --> CS
 
     classDef orch fill:#0d2240,stroke:#58a6ff,color:#7dc6ff,font-weight:700
+    classDef orchnew fill:#0d2240,stroke:#f0a500,color:#7dc6ff,font-weight:700,stroke-width:2.5px
     classDef agent fill:#1e3a5f,stroke:#4a90d9,color:#aecbfa,font-weight:600
+    classDef agentnew fill:#1e3a5f,stroke:#f0a500,color:#aecbfa,font-weight:700,stroke-width:2.5px
     classDef tool fill:#173326,stroke:#3cad72,color:#a8d5b5
-    classDef toolnew fill:#173326,stroke:#f0a500,color:#a8d5b5,font-weight:700
+    classDef toolnew fill:#173326,stroke:#f0a500,color:#a8d5b5,font-weight:700,stroke-width:2.5px
     classDef svc fill:#211500,stroke:#c47b2a,color:#f0c87a
     classDef artifact fill:#102828,stroke:#3ecec4,color:#a0f0ec
+    classDef artifactnew fill:#102828,stroke:#f0a500,color:#a0f0ec,stroke-width:2.5px
 ```
 
 ```python {4}
@@ -221,7 +224,7 @@ flowchart TD
         ORCH["COMPLAINT_HANDLER_AGENT\n(orchestrator)"]:::orch
     end
 
-    GATE["🔒 GATE\nhuman confirm"]:::gate
+    GATE["🔒 GATE\nhuman confirm"]:::gatenew
     AA["ACCOUNT_AGENT"]:::agent
     FA["FRAUD_AGENT"]:::agent
     RA["RESPONSE_AGENT"]:::agent
@@ -253,6 +256,7 @@ flowchart TD
     classDef svc fill:#211500,stroke:#c47b2a,color:#f0c87a
     classDef artifact fill:#102828,stroke:#3ecec4,color:#a0f0ec
     classDef gate fill:#2d1040,stroke:#9b59b6,color:#ce9aff,font-weight:700
+    classDef gatenew fill:#2d1040,stroke:#f0a500,color:#ce9aff,font-weight:700,stroke-width:2.5px
 ```
 
 ```python {9,10}
@@ -320,8 +324,8 @@ flowchart TD
         ORCH["COMPLAINT_HANDLER_AGENT\n(orchestrator)"]:::orch
     end
 
-    STATE["STATE\ndraft_response · customer_id …"]:::state
-    MEM[("MEMORY_SERVICE\npast complaints · patterns")]:::memory
+    STATE["STATE\ndraft_response · customer_id …"]:::statenew
+    MEM[("MEMORY_SERVICE\npast complaints · patterns")]:::memorynew
 
     GATE["🔒 GATE\nhuman confirm"]:::gate
     AA["ACCOUNT_AGENT"]:::agent
@@ -358,7 +362,9 @@ flowchart TD
     classDef artifact fill:#102828,stroke:#3ecec4,color:#a0f0ec
     classDef gate fill:#2d1040,stroke:#9b59b6,color:#ce9aff,font-weight:700
     classDef state fill:#102828,stroke:#3ecec4,color:#a0f0ec,font-weight:700
+    classDef statenew fill:#102828,stroke:#f0a500,color:#a0f0ec,font-weight:700,stroke-width:2.5px
     classDef memory fill:#1e1000,stroke:#e07020,color:#f0a060
+    classDef memorynew fill:#1e1000,stroke:#f0a500,color:#f0a060,stroke-width:2.5px
 ```
 
 ```python {2,5-9}
@@ -445,14 +451,14 @@ flowchart TD
     CFP["check_fraud_patterns"]:::tool
     GPDF["generate_pdf"]:::tool
 
-    MCP_PILL("MCP"):::pill
-    A2A_PILL("A2A"):::pill
+    MCP_PILL("MCP"):::pillnew
+    A2A_PILL("A2A"):::pillnew
 
     AS["Account Service"]:::svc
     FDB["Fraud DB\n(Risk team)"]:::ext
     PDF["📄 PDF artifact"]:::artifact
     CS["Card Service"]:::svc
-    CCA["Customer Comms\nAgent (other team)"]:::ext
+    CCA["Customer Comms\nAgent (other team)"]:::extnew
 
     ORCH <--> STATE
     ORCH -. "session ends" .-> MEM
@@ -476,7 +482,9 @@ flowchart TD
     classDef state fill:#102828,stroke:#3ecec4,color:#a0f0ec,font-weight:700
     classDef memory fill:#1e1000,stroke:#e07020,color:#f0a060
     classDef ext fill:#1a1010,stroke:#6b3030,color:#9b7070,stroke-dasharray:4 3
+    classDef extnew fill:#1a1010,stroke:#f0a500,color:#9b7070,stroke-dasharray:4 3,stroke-width:2.5px
     classDef pill fill:#001a20,stroke:#00b4d8,color:#90e0ef,font-weight:700,stroke-width:2px
+    classDef pillnew fill:#001a20,stroke:#f0a500,color:#90e0ef,font-weight:700,stroke-width:2.5px
 ```
 
 <style scoped>

@@ -33,8 +33,8 @@ class: dia-slide
 ---
 
 <div class="title-bar">
-  <span class="tb-l">C1 — Non-determinism &amp; evals</span>
-  <span class="tb-r">distributed systems / testing pyramid</span>
+  <span class="tb-l">C1 — non-determinism</span>
+  <span class="tb-r">evals · testing pyramid</span>
 </div>
 
 ```mermaid
@@ -124,7 +124,7 @@ class: dia-slide
 
 <div class="title-bar">
   <span class="tb-l">C2 — Autonomy boundaries</span>
-  <span class="tb-r">authorization</span>
+  <span class="tb-r">approval gates · authorization / authentication</span>
 </div>
 
 ```mermaid
@@ -181,7 +181,7 @@ class: dia-slide
 
 <div class="title-bar">
   <span class="tb-l">C3 — Cost, latency, deployment</span>
-  <span class="tb-r">sizing decisions</span>
+  <span class="tb-r">agent ops · service ops</span>
 </div>
 
 <div class="three-cols">
