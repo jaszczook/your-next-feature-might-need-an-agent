@@ -29,22 +29,13 @@ border, or "external" tag).
 Optional flourish: a faint dashed trust-boundary line running between
 in-house and external components, with both protocol pills sitting on
 that line.
-ADDITIONAL VISUAL ELEMENT: Along the bottom margin, a thin three-cell
-strip contrasting MCP with REST. Small text, low visual weight — this
-is a footnote, not the foreground. Three short cells:
-REST API                    MCP
-every consumer              the LLM
-full surface area           curated surface
-bytes on the wire           tokens in the window
-NO SNIPPET. The bottom third of the slide where code lived on P1-P4
-is replaced by this comparison strip.
-Optional single dim line in the lower margin if the slide feels
-bottom-heavy after the strip:
-written by you    ·    spoken between systems
+NO SNIPPET. NO COMPARISON STRIP. The diagram fills the full slide
+below the title bar — mermaid width at 96%. The MCP vs REST
+comparison is delivered entirely by the speaker (see SPOKEN).
 SPOKEN:
 "Problem five. And this one's different — I'm not adding anything to
 the system. I'm pointing at things that were already there.
-[point at the dimmed diagram broadly — beat]
+[point at the diagram broadly — beat]
 Look at what we built. Tools. Sub-agents. Callbacks. State. Memory.
 All of it lives inside your codebase — your team owns it, your repo,
 your deploys.
@@ -57,10 +48,7 @@ do you describe that interface? You don't want a bespoke client that
 breaks every time they ship. You want a protocol. That protocol is
 MCP.
 And here's where I want to push back on a thing you might be thinking,
-which is 'isn't this just OpenAPI?' Almost, but not exactly. MCP and
-REST solve overlapping problems for different consumers, and the
-difference matters.
-[gesture at the comparison strip — beat]
+which is 'isn't this just OpenAPI?' Almost, but not exactly.
 A REST API is designed for every consumer — your frontend, batch
 jobs, mobile, partner teams, scripts. So it tends to be wide:
 hundreds of endpoints, deep object graphs, generous response payloads.
@@ -68,12 +56,12 @@ That's correct, for a human-or-machine consumer that can handle
 arbitrary data.
 MCP is designed for an LLM. The consumer is sitting in a context
 window with a finite token budget, and every byte you hand it costs
-attention and money. So MCP servers tend to expose a curated surface
-— a smaller set of operations, each with descriptions the model can
-actually read, return shapes that are compact enough not to clutter
-the context, and metadata about when each tool is appropriate. It's
-less like a REST API and more like a well-scoped SDK that happens to
-be discoverable at runtime.
+attention and money. So MCP servers expose a curated surface — a
+smaller set of operations, each with descriptions the model can
+actually read, return shapes compact enough not to clutter the
+context, and metadata about when each tool is appropriate. It's less
+like a REST API and more like a well-scoped SDK that happens to be
+discoverable at runtime.
 If REST is 'here's everything we can do, you figure out what you
 need,' MCP is 'here are the five things an agent would sensibly want
 to do, with documentation aimed at the model.' Same network plumbing

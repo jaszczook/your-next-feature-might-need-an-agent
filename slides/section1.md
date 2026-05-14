@@ -4,7 +4,6 @@ layout: center
 
 <div class="min-center">
   <h1 class="talk-title">Your Next Feature<br>Might Need an Agent</h1>
-  <p class="talk-meta">[Name] · Internal Tech Talk</p>
 </div>
 
 <!--
@@ -42,14 +41,13 @@ one actually looks like."
     <h2>[Name]</h2>
     <p>Full-stack developer, [N] years</p>
     <p>Samsung → Bravura Solutions → [bank]</p>
-    <p>Building with ADK on [project area]</p>
   </div>
 </div>
 
 <!--
 ## CUE
 - Name and career arc
-- Mention ADK project
+- Full-stack from day one
 - AI tools daily
 - → hold onto that
 
@@ -57,7 +55,7 @@ one actually looks like."
 
 ## FLOW
 - Name and career arc: Samsung → Bravura Solutions → [bank], [N] years on [team]
-- Current work: building an agent on top of [project area] using Google's ADK — audience will see it later
+- Emphasise: full-stack from the very beginning — always owned both ends
 - Aside: like a lot of you, using AI dev assistants basically every day for the last couple of years
 - → transition cue: "hold onto that — it matters in a minute"
 
@@ -65,10 +63,9 @@ one actually looks like."
 
 ## SPOKEN
 "Quick about me. I'm [name]. I've been a full-stack developer my
-entire career — started at Samsung, then Bravura Solutions, now here
-at [bank] for the last [N] years on [team]. These days I'm building
-an agent on top of [project area] using Google's ADK — you'll see a
-bit of it later.
+entire career — from day one, always both ends of the stack — started
+at Samsung, then Bravura Solutions, now here at [bank] for the last
+[N] years on [team].
 Oh, and like a lot of you, I've been using AI dev assistants —
 Copilot, Cursor, Claude Code, whatever's been on my machine — basically
 every day for the last couple of years. Hold onto that — it matters

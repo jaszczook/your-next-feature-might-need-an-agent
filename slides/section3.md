@@ -31,6 +31,8 @@ determines almost every other decision you make."
 
 ---
 
+<p style="font-size:0.6em;color:#8b949e;margin:0 0 0.5em">shape 1 — assistive</p>
+
 <div class="two-panel">
   <div class="panel-top">
 
@@ -49,24 +51,22 @@ flowchart LR
     classDef usr fill:#0d2240,stroke:#58a6ff,color:#7dc6ff
 ```
 
-  <p class="panel-cap">prefill a form from a source</p>
   </div>
 
   <div class="panel-bottom">
     <video class="panel-video" :src="'/7490439-hd_1920_1080_30fps.mp4'" loop muted playsinline controls />
   </div>
 
-  <p class="panel-footer">the user is still driving</p>
 </div>
 
 <!--
 ## CUE
 - Shape one: assistive
-- Source → agent → form → user
+- Source → agent → form → user — "prefill a form from a source"
 - Pattern everywhere
 - [advance panel — beat]
 - Real product, live
-- Still filling a form
+- Still filling a form — "the user is still driving"
 - → short leash; reframe next
 
 ---
@@ -164,7 +164,7 @@ So sometimes the leash does need to be longer. And the shape changes."
 
 ---
 
-<p style="font-size:0.6em;color:#8b949e;margin:0 0 0.3em">Cmd+K in a case management app</p>
+<p style="font-size:0.6em;color:#8b949e;margin:0 0 0.3em">shape 2 — agentic</p>
 
 <div class="cmdK-outer">
   <!-- Blurred background: faded case-management UI -->
@@ -209,7 +209,7 @@ So sometimes the leash does need to be longer. And the shape changes."
 
 <!--
 ## CUE
-- Shape two: agentic
+- Shape two: agentic — "Cmd+K in a case management app"
 - Six actions, four systems, one conditional
 - Form would ship next year
 - → one sentence, agent sequences

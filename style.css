@@ -17,12 +17,12 @@
 /* ─── Title slide ───────────────────────────────────────────── */
 /* .slidev-layout prefix gives specificity (0,2,0) > Slidev's (0,1,1) h/p rules */
 .slidev-layout .talk-title {
-  font-size: 3em;
+  font-size: 1.65em;
   font-weight: 300;
-  line-height: 1.15;
-  letter-spacing: -0.03em;
-  color: #e6edf3;
-  margin: 0 0 0.45em;
+  line-height: 1.25;
+  letter-spacing: 0.04em;
+  color: #c9d1d9;
+  margin: 0 0 0.5em;
 }
 
 .slidev-layout .talk-meta {
@@ -34,19 +34,21 @@
 
 /* ─── Definition / punchline / section dividers ─────────────── */
 .slidev-layout .def-text {
-  font-size: 2.5em;
+  font-size: 1.4em;
   font-weight: 300;
-  line-height: 1.3;
-  color: #e6edf3;
+  line-height: 1.45;
+  letter-spacing: 0.04em;
+  color: #c9d1d9;
   margin: 0;
 }
 
 .slidev-layout .section-heading {
-  font-size: 2.8em;
+  font-size: 1.5em;
   font-weight: 300;
   line-height: 1.2;
+  letter-spacing: 0.1em;
   margin: 0 0 0.3em;
-  color: #e6edf3;
+  color: #c9d1d9;
 }
 
 .slidev-layout .section-sub {
@@ -57,11 +59,20 @@
   margin: 0;
 }
 
+.slidev-layout .section-note {
+  font-size: 0.65em;
+  color: #6e7681;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0.6em 0 0;
+}
+
 .slidev-layout .punchline-text {
-  font-size: 2.1em;
+  font-size: 1.3em;
   font-weight: 300;
-  line-height: 1.3;
-  color: #e6edf3;
+  line-height: 1.45;
+  letter-spacing: 0.04em;
+  color: #c9d1d9;
   margin: 0;
 }
 
@@ -167,11 +178,11 @@
   min-height: 0;
   width: 65%;
   margin: 0 auto;
+  align-self: center;
 }
 
 .problem-slide-stack div[class^="language-"],
-.problem-slide-stack div[class*=" language-"],
-.problem-slide-stack .mcp-strip {
+.problem-slide-stack div[class*=" language-"] {
   grid-area: code;
   overflow: hidden !important;
   border-radius: 6px !important;
@@ -533,19 +544,21 @@
 
 /* ─── Thanks ─────────────────────────────────────────────────── */
 .slidev-layout .thanks-word {
-  font-size: 5em;
+  font-size: 3em;
   font-weight: 300;
   line-height: 1.2;
-  color: #e6edf3;
+  letter-spacing: 0.08em;
+  color: #c9d1d9;
   margin: 0;
 }
 
 /* ─── Bridge slide ───────────────────────────────────────────── */
 .slidev-layout .bridge-main {
-  font-size: 2em;
+  font-size: 1.25em;
   font-weight: 300;
-  line-height: 1.3;
-  color: #e6edf3;
+  line-height: 1.45;
+  letter-spacing: 0.04em;
+  color: #c9d1d9;
   margin: 0 0 0.4em;
 }
 
@@ -561,7 +574,7 @@
    The catch-all below keeps dia-slide non-mermaid elements in line. */
 
 /* Catch-all for dia-only slides (handles any direct children) */
-.dia-slide > :not(.title-bar):not(.event-props):not(.three-cols):not(.mcp-strip) {
+.dia-slide > :not(.title-bar):not(.event-props):not(.three-cols) {
   flex: 1 1 0;
   min-height: 0;
   overflow: hidden;
@@ -603,34 +616,3 @@
 
 /* ─── Hide slide number ──────────────────────────────────────── */
 .slidev-page-number { display: none !important; }
-
-/* ─── P5 MCP comparison strip ───────────────────────────────── */
-.mcp-strip {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  column-gap: 0;
-  row-gap: 0.15em;
-  padding: 0.5em 0 0.25em;
-  border-top: 1px solid #30363d;
-  flex-shrink: 0;
-  font-size: 0.58em;
-  color: #8b949e;
-}
-
-.mcp-col-hdr {
-  font-weight: 700;
-  border-bottom: 1px solid #30363d;
-  padding-bottom: 0.3em;
-  margin-bottom: 0.05em;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  font-size: 0.9em;
-}
-
-/* REST column */
-.rest-col { color: #6b7280; padding-right: 1.2em; }
-.mcp-col-hdr.rest-col { color: #8b949e; }
-
-/* MCP column — border-left acts as vertical divider */
-.mcp-col { color: #aecbfa; border-left: 1px solid #30363d; padding-left: 1.2em; }
-.mcp-col-hdr.mcp-col { color: #58a6ff; }
