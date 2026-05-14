@@ -76,11 +76,8 @@ in a minute."
 layout: center
 ---
 
-<div class="img-placeholder">
-  [ IMAGE PLACEHOLDER ]
-  <span class="hint">
-    Childhood photo at a computer — or nostalgic 90s home computer (beige tower, curved CRT)
-  </span>
+<div style="display:flex;justify-content:center;align-items:center;height:100%">
+  <img :src="'/kiddo.png'" style="max-height:40vh;max-width:40%;object-fit:contain" alt="" />
 </div>
 
 <!--

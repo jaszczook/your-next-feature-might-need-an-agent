@@ -257,6 +257,7 @@ flowchart TD
     classDef artifact fill:#102828,stroke:#3ecec4,color:#a0f0ec
     classDef gate fill:#2d1040,stroke:#9b59b6,color:#ce9aff,font-weight:700
     classDef gatenew fill:#2d1040,stroke:#f0a500,color:#ce9aff,font-weight:700,stroke-width:2.5px
+    style audit stroke:#f0a500,stroke-width:2.5px
 ```
 
 ```python {9,10}
