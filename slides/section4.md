@@ -104,12 +104,19 @@ case_agent = LlmAgent(
 
 ## SPOKEN
 Problem one. The agent needs to actually do something — pull accounts, query the fraud DB, hold cards. These are service calls. You've been writing these your whole career.
+
 In agent-land they're called tools, but it's the adapter pattern. The agent doesn't know what HTTP is or what your fraud DB is; it knows there are functions it can call, and each function knows how to talk to its real system. Same way a service client wraps a REST API today.
+
 [glance at diagram — beat] Meet our case_agent. Four tools, three backend services. The agent calls whichever one it needs based on what the user asked for.
+
 [glance at snippet — beat]
+
 Two things. One: a plain Python function becomes a tool the moment you put it in that tools= list. No special base class, no decorator. If you can write a function, you can write a tool.
+
 Two — that docstring isn't a comment for humans. It's a contract for the LLM. The model reads it to decide when to call this function. 'Place a temporary hold on a card. Use when fraud is suspected.' That sentence is what makes the agent reach for hold_card instead of guessing.
+
 Tools don't only return text, by the way. Structured data, or artifacts — a PDF, an image, a file. Same shape as a multipart response.
+
 Problem two: this one agent is fine for now, but it's about to be doing too much.
 -->
 
@@ -199,13 +206,21 @@ complaint_handler_agent = LlmAgent(
 
 ## SPOKEN
 Problem two. That case_agent from a minute ago is going to drown if it has to know everything about accounts, everything about fraud, and everything about drafting customer communications. Big prompts, conflicting instructions, no separation of concerns.
+
 What you actually want is service composition. Same instinct you have today: when one service is doing too much, you break it into smaller services and put something in front to coordinate. Here, that 'something in front' is itself an agent — an orchestrator. We're renaming the agent because its role just changed: it's not doing the work directly anymore, it's coordinating others.
+
 [point at diagram — beat]
+
 Look at what changed. Same four tools as before, they didn't go anywhere. We just regrouped them under three specialists. Account agent knows the account systems. Fraud agent knows the fraud DB. Response agent knows how to draft messages — and it just got a new tool, generate_pdf, which spits out that artifact at the bottom.
+
 Notice one tool that did not get pulled into a sub-agent: hold_card. Still hanging directly off the orchestrator. That positioning is on purpose.
+
 [glance at snippet — beat]
+
 And here's the genuinely different thing about this code. There is no orchestration logic. No if fraud_detected then call response_agent. The orchestrator doesn't describe the saga; it just declares its participants. The LLM inside the orchestrator figures out the sequence at runtime, based on what the user asked and what each sub-agent returns.
+
 If you've written a saga before — Camunda, Step Functions — you know there's a flow diagram somewhere. Here there isn't. The flow is in the model's head, one decision at a time. That's the power and that's the discomfort.
+
 Problem three. About that card hold.
 -->
 
@@ -301,12 +316,19 @@ complaint_handler_agent = LlmAgent(
 
 ## SPOKEN
 Problem three. We need a way to say 'always log this' and 'never do that without asking first.' These are cross-cutting concerns. In every framework you've ever used — Spring AOP, Express middleware, request interceptors — there's a way to attach behavior around a function without changing the function itself.
+
 Agent frameworks have the same idea, but here it splits into two shapes depending on what you're doing.
+
 [point at audit band — beat] Up here, on the orchestrator, I've attached an audit_tool_call callback. ADK calls this a before_tool_callback. It runs synchronously before every tool call, no matter which tool, no matter which sub-agent triggered it. Every action the agent takes, we have a log line. Same shape as a global interceptor.
+
 [point at GATE — beat] And down here, on hold_card specifically, I need something different. The agent can't just log and proceed — it has to stop, ask a human, and wait for an answer that might come two minutes later. A synchronous callback is the wrong tool for that.
+
 ADK has a built-in primitive for exactly this: require_confirmation=True on the FunctionTool. One flag. When the agent tries to call hold_card, ADK automatically pauses the run, surfaces the approval request to your UI, and only executes the actual card hold once an analyst says yes. The function itself stays clean — no pending status, no generator logic. This is the short leash inside the long one — the agent can pull accounts, check fraud, draft responses on its own, but it cannot freeze a real customer's card without a person saying yes.
+
 [glance at snippet — beat]
+
 Two mechanisms, one idea. Both are middleware. Both are 'attach behavior to a tool call.' The callback is the synchronous, applied-to-everything flavor; require_confirmation is the async, applied-to-a-specific-tool flavor. Once you see them as the same family, the rest of the ADK surface — before_agent, after_agent, before_model — falls into place. Different scopes, same idea.
+
 Problem four. The agent needs to remember things.
 -->
 
@@ -411,15 +433,25 @@ memory_service.add(
 
 ## SPOKEN
 Problem four. The agent needs to remember things. Two kinds of things, actually — and that's the whole lesson on this slide.
+
 Kind one: short-term. The response agent drafts a reply. Two tool calls later, the orchestrator needs to attach that draft to a PDF. Where did the draft go in the meantime? It went into state. State is request scope. It's the thing that lives for as long as this conversation is alive, and then it goes away. Same idea as a request-scoped bean or session storage in a web app.
+
 [point at STATE box — beat]
+
 Kind two: long-term. The bank wants the agent to know things across sessions — last month's complaint patterns, customers who've already had two fraud holds, whatever. That's not request scope. That's a database. The framework calls it a memory_service and that's exactly what it is — a separate service that the agent reads from and writes to.
+
 [point at MEMORY_SERVICE box — beat]
+
 And the arrow between them is the whole game. When a conversation ends, you decide what's worth keeping. You take what's in state, you push what matters into memory_service, and now it's available next time. That's the entire lifecycle.
+
 [glance at snippet — beat]
+
 Top line — inside a tool, mid-conversation — you write to tool_context.state. It's an attribute on the context object the framework hands you. Lives as long as the request lives.
+
 Bottom block — after the case is resolved — you decide what's worth keeping. Not the whole transcript. The customer ID, a summary, some tags. Structured facts. That's what goes into memory_service, and that's what the agent retrieves next time this customer comes back, or next time someone files a similar complaint.
+
 Two-tier storage, and you decide what crosses the boundary. You already build this every week. The agent version isn't new, it's just labeled differently.
+
 One more problem, and then we zoom out.
 -->
 
@@ -494,16 +526,13 @@ flowchart TD
 
 <!--
 ## CUE
-- Pointing, not adding
-- Everything inside your codebase
-- Two arrows cross a line
-- MCP: Fraud DB, risk team's protocol
-- "Just OpenAPI?" — not quite
-- REST: wide, every consumer; MCP: curated for LLM in finite context window
-- MCP = scoped SDK discoverable at runtime
-- A2A: agent-to-agent boundary
-- Same allegory, two scopes
-- → five down, runtime next
+- Not adding — pointing at what's already there
+- Two arrows cross a line: MCP + A2A
+- "Just OpenAPI?" → almost, but not quite
+- MCP: curated for LLM in a finite context window (≠ wide REST surface)
+- A2A: same problem, one level up — agent to agent
+- Same allegory, two scopes; both exist for the same reason OpenAPI does
+- → five down, substrate next
 
 ---
 
@@ -579,13 +608,12 @@ sequenceDiagram
 <!--
 ## CUE
 - "What did it actually do?" — the production question
-- Everything is literally an event
-- All producers on one stream
-- Three things fall out free
-- Observability: stream = trace, no extra instrumentation
-- Replay: state from events — event sourcing analogy
-- Resumability: pause-persist-resume
-- Patterns = shape; events = substrate
+- Everything is literally an event (not metaphorically)
+- Three things fall out for free:
+  - **Observability** — stream = trace; no extra instrumentation
+  - **Replay** — state is a projection of events (event sourcing — if you know it, this is that)
+  - **Resumability** — pause → persist → resume on any machine
+- Patterns = shape; events = substrate; both matter
 - → now, what's hard
 
 ---

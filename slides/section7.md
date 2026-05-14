@@ -84,21 +84,22 @@ layout: center
 
 <!--
 ## CUE
-- State 1: the riff
-- Definition keeps moving
-- State 2: click
-- Honest ambivalence
-- Builders thrive, coders friction
+- The riff — joke, but points at something real
+- Definition keeps moving (2006 → 2016 → 2026)
+- [pause] → click → "I think it's moving again"
+- Own line: "if you don't ship agents…"
+- Honest ambivalence: don't fully believe it yet — say that
+- **Builders thrive / pure-coders friction — this is the emotional core; don't rush it**
 - → thanks
 
 ---
 
 ## FLOW
-- [STATE 1] Introduce the recurring industry riff; name the joke and the real thing it points at
-- [STATE 1] Land the beat: the definition of full-stack keeps moving
-- [STATE 2 — after click] Deliver own line: it's moving again
-- [STATE 2] Honest ambivalence: don't fully believe it yet, but think it's coming
-- [STATE 2] Bifurcated honest note: builders will thrive; pure-coders will feel friction; both are real
+- [STATE 1] Introduce the recurring industry riff; name the joke and what it genuinely points at
+- [STATE 1] Land the beat: the definition keeps moving — 2006, 2016, 2026 is the implicit arc
+- [pause — then click] "I think it's moving again" — short, let it sit
+- [STATE 2] Deliver own line with honest ambivalence: "I don't fully believe that. Not yet."
+- **[STATE 2] The bifurcated closing is the emotional core of the whole talk. Don't rush the builder/coder distinction. Both halves of the room are real, and they need to hear their half acknowledged.**
 - → transition cue: advance to thanks
 
 ---

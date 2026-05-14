@@ -85,23 +85,29 @@ flowchart LR
 
 ## SPOKEN
 "Shape one. Assistive.
+
 Generic version first. The user is doing something on a screen.
 There's a source — a document, a description, some input — and there's
 a destination, usually a form. The agent's job is to look at the
 source, extract what matters, and prefill the form so the user doesn't
 have to. The user reviews, fixes anything wrong, and submits.
+
 That's the pattern. Prefill from a source. Once you see it, you'll
 notice it everywhere — onboarding flows, expense reports, KYC
 intakes, ticket triage.
+
 [advance to bottom panel — beat]
+
 And we've already built one. This is [tool name]. It reads incoming
 customer documents, pulls out the fields we need, drops them into
 the system. The analyst checks the extraction, fixes anything wrong,
 and submits.
+
 It feels like an agent, and technically it is — there's a model,
 there are tools, there's a loop running somewhere behind this UI. But
 notice what the user is actually doing: they're filling out a form.
 The agent just made the form much easier to fill out.
+
 Short leash. The user sees every output, approves every field, presses
 every button."
 -->
@@ -116,23 +122,22 @@ layout: center
 
 <!--
 ## CUE
-- Assistive = tool, not agent
+- Reframe: assistive = tool, not agent
 - Tools are fine; don't over-engineer
-- [beat]
-- Short leash wastes capability
-- Leash for user's goal
-- → the hour is the product
+- **[beat] — pause before the pivot**
+- Formula 1 engine / school zone — memorable image, let it land
+- Reason to extend leash: user's goal, not the model's capability
+- **"That hour is the product." — land this clearly before transitioning**
 
 ---
 
 ## FLOW
-- Deliver the reframe: assistive = tool, not agent
-- Acknowledge tools are valuable; the mistake is over-engineering them as agents
-- [beat]
-- Introduce the limitation of short-leash tools: they waste LLM capability
-- Reframe the reason to extend the leash: the user's goal, not showing off the model
-- The hour saved is the product
-- → transition: sometimes the leash needs to be longer, and the shape changes
+- Deliver the reframe: assistive = tool, not agent; the mistake is calling it an agent and over-engineering it
+- **[beat] — this beat separates "tools are fine" from "here's why the leash matters." Don't skip past it.**
+- Formula 1 / school zone metaphor: pause on it — it's vivid and the audience will picture it
+- Reframe the reason to extend the leash: it's not about showing off the model; it's about the user's hour
+- Land "that hour is the product" clearly — it's the moral of the assistive section
+- → transition: sometimes the leash does need to be longer, and the shape changes
 
 ---
 
@@ -142,10 +147,13 @@ short leash, user driving — you're not really building an agent.
 You're building a tool. A very smart tool, sure. A tool that happens
 to have a language model inside it. But functionally, in terms of how
 you should think about it, design it, test it, ship it — it's a tool.
+
 And that's fine. Tools are great. Most of what you build will be tools.
 The mistake is calling it an agent and then over-engineering it like
 one.
+
 [beat]
+
 But here's the thing. A short-leashed tool only uses a sliver of what
 modern LLMs can actually do. These models can plan, sequence actions
 across systems, recover from errors, decide when they have enough
@@ -153,12 +161,14 @@ information and when they need more. If every step you let it take
 has to be approved one at a time, you're using a Formula 1 engine
 to drive in a school zone. Fine sometimes, but you're leaving the
 machine's actual capability on the floor.
+
 And — more importantly — you're leaving the user's work on the
 floor. The reason to extend the leash isn't to show off the model.
 It's because the user has a goal, and right now they're spending an
 hour doing the six clicks between them and that goal. Make the leash
 longer, the six clicks collapse, the user gets their hour back. That
 hour is the product.
+
 So sometimes the leash does need to be longer. And the shape changes."
 -->
 
@@ -231,15 +241,19 @@ So sometimes the leash does need to be longer. And the shape changes."
 "Shape two. Agentic. Same kind of internal app — case management, the
 user is a complaints analyst. But instead of a form, there's a command
 bar. Cmd+K, type what you want.
+
 Look at what's in this prompt. Pull this customer's account. Find the
 disputed transaction. Check fraud patterns. Draft a response. Hold the
 card if needed. Generate a PDF summary.
+
 That's not one action. That's six. Across at least four backend systems.
 With a conditional in the middle.
+
 If you tried to build this as a form, the form would have six steps
 and a wizard and a state machine and you'd ship it next year. As an
 agentic feature, the user types one sentence and the agent figures out
 the sequence.
+
 Long leash overall — the user isn't approving each step. But notice
 the hold the card bit. That one needs a short leash inside the long
 one. That tension is where the interesting design questions live."
@@ -298,16 +312,20 @@ one. That tension is where the interesting design questions live."
 
 ## SPOKEN
 "So here's how I think about it.
+
 [gesture at top row] Assistive — you tell the dog to sit. It sits.
 You tell it to come. It comes. Short leash. User drives every step.
 You're building a tool.
+
 [gesture at bottom row] Agentic — you tell the dog to behave. It
 runs around, sniffs things, hopefully doesn't bite anyone. Long leash.
 User delegates the goal. You're building an agent.
+
 Most features you build will be the dog on top. That's fine. But when
 the natural unit of work for the user is a goal and not a step — when
 'behave' is the right instruction — that's when you reach for an
 agent.
+
 The Cmd+K example is what I want to dig into for the next nine minutes.
 Six problems you'll hit when you build something like that. All six
 have analogues you already know."
