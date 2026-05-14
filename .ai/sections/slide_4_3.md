@@ -1,6 +1,6 @@
 # SLIDE 4.3 — P3: CALLBACKS
 
-**Title bar:** `P3 — Callbacks | AOP / interceptors / middleware`
+**Title bar:** `P3 — Callbacks | AOP / interceptors / middleware / guards`
 
 ---
 
@@ -65,7 +65,7 @@ complaint_handler_agent = LlmAgent(
 
 ## Spoken
 
-"Problem three. We need a way to say 'always log this' and 'never do that without asking first.' These are cross-cutting concerns. In every framework you've ever used — Spring AOP, Express middleware, request interceptors — there's a way to attach behavior around a function without changing the function itself.
+"Problem three. We need a way to say 'always log this' and 'never do that without asking first.' These are cross-cutting concerns. In every framework you've ever used — Spring AOP, Express middleware, NestJS guards, request interceptors — there's a way to attach behavior around a function without changing the function itself.
 
 Agent frameworks have the same idea, but here it splits into two shapes depending on what you're doing.
 

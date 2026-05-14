@@ -230,7 +230,7 @@ class: problem-slide-stack
 
 <div class="title-bar">
   <span class="tb-l">P3 — audit every call, gate the risky ones</span>
-  <span class="tb-r">callbacks · AOP / middleware</span>
+  <span class="tb-r">callbacks · AOP / middleware / guards</span>
 </div>
 
 ```mermaid
@@ -315,7 +315,7 @@ complaint_handler_agent = LlmAgent(
 ---
 
 ## SPOKEN
-Problem three. We need a way to say 'always log this' and 'never do that without asking first.' These are cross-cutting concerns. In every framework you've ever used — Spring AOP, Express middleware, request interceptors — there's a way to attach behavior around a function without changing the function itself.
+Problem three. We need a way to say 'always log this' and 'never do that without asking first.' These are cross-cutting concerns. In every framework you've ever used — Spring AOP, Express middleware, NestJS guards, request interceptors — there's a way to attach behavior around a function without changing the function itself.
 
 Agent frameworks have the same idea, but here it splits into two shapes depending on what you're doing.
 
